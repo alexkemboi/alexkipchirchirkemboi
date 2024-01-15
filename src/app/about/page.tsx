@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
+import Home from "@/components/Home";
 
 const page = () => {
 	return (
@@ -10,6 +11,7 @@ const page = () => {
 				<Navbar />
 			</header>
 			<main className="bg-sky-950">
+				<Home />
 				<About />
 			</main>
 			<Footer />

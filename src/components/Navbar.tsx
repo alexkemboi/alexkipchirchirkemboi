@@ -43,7 +43,7 @@ const Navbar = () => {
 						</div>
 					</div>
 					<div className="flex items-center justify-center sm:items-center sm:justify-center sm-border-0 md:border md:border-1 rounded-full m-auto p-2">
-						{/* <Link href="/home">
+						{/* <Link href="/">
 							<div className="rounded-full overflow-hidden ml-10 mr-4  w-10 h-10">
 								<Image
 									src={alex}
@@ -51,13 +51,13 @@ const Navbar = () => {
 								/>
 							</div>
 						</Link>
-						<Link href="/home">
+						<Link href="/">
 							<span className="text-white font-bold text-xl">ALEX KEMBOI</span>
 						</Link> */}
 
 						<div className="hidden sm:block sm:ml-6 ">
 							<div className="flex space-x-4">
-								<Link href="/home">
+								<Link href="/">
 									<span className="text-gray-300 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
 										Home
 									</span>
@@ -94,7 +94,7 @@ const Navbar = () => {
 			</div>
 			{isOpen && (
 				<div
-					className="border-r border-gray-500 sm:hidden absolute left-0 top-0 w-1/2 bg-sky-950 transition-transform transform h-screen animate-slideIn delay-200"
+					className="border-r border-gray-500 sm:hidden absolute left-0 top-0 w-1/2 bg-sky-950 transition-transform transform h-1/2 animate-slideIn delay-200"
 					id="mobile-menu">
 					<div className="border-b border-gray-500 text-right rounded flex flex-row justify-between w-auto">
 						<div className="rounded-full overflow-hidden w-10 m-2 h-auto ">
@@ -119,7 +119,7 @@ const Navbar = () => {
 						</button>
 					</div>
 					<div className="px-2 pt-2 pb-3 space-y-1">
-						<Link href="/home">
+						<Link href="/">
 							<span className="text-gray-300 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
 								Home
 							</span>

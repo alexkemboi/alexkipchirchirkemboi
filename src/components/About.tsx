@@ -18,8 +18,8 @@ const About = () => {
 	};
 	useEffect(() => {}, []);
 	return (
-		<div className="md:flex md:flex-row mx-10  animate-fadeIn">
-			<div className="md:w-2/3 sm:w-2/2 sm:m-4 bg-sky-950  p-6 rounded-md  border border-gray-700">
+		<div className="md:flex md:flex-row mx-10  animate-fadeIn group group-hover:scale-100 group-hover:opacity-100">
+			<div className="md:w-2/2 sm:w-2/2 sm:m-4 bg-sky-950  p-6 rounded-md group group-hover:scale-100 group-hover:opacity-100  border border-gray-700">
 				<h1 className="text-center text-white w-50 m-auto text-3xl font-bold ">
 					About Me
 				</h1>
@@ -42,14 +42,6 @@ const About = () => {
 						Read More &gt;
 					</button>
 				)}
-			</div>
-			<div className="md:w-1/3 sm:w-2/2">
-				<div className="md:rounded-full md:overflow-hidden w-auto h-auto m-4">
-					<Image
-						src={alex}
-						alt="Description"
-					/>
-				</div>
 			</div>
 		</div>
 	);

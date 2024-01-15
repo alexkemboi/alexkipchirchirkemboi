@@ -16,10 +16,10 @@ const Navbar = () => {
 		<nav className="bg-sky-950">
 			<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
 				<div className="relative flex items-center justify-between h-16">
-					<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+					<div className="absolute inset-y-0 left-0 flex flex-row  justify-between sm:hidden">
 						<button
 							type="button"
-							className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-sky-950 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+							className="inline-flex items-center px-10 rounded-md text-gray-400 hover:text-white hover:bg-sky-950 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
 							aria-controls="mobile-menu"
 							aria-expanded="false"
 							onClick={toggleMenu}>
@@ -29,6 +29,18 @@ const Navbar = () => {
 								className="h-6 w-6"
 							/>
 						</button>
+						<div className="relative m-2 flex h-12 w-12 bg-white p-2 items-center justify-center rounded-full dark:bg-sky-950 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 ">
+							<Image
+								alt=""
+								loading="lazy"
+								width="32"
+								height="32"
+								decoding="async"
+								data-nimg="1"
+								className="h-8 w-8 rounded-full dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
+								src={alex}
+							/>
+						</div>
 					</div>
 					<div className="flex items-center justify-center sm:items-center sm:justify-center sm-border-0 md:border md:border-1 rounded-full m-auto p-2">
 						{/* <Link href="/home">

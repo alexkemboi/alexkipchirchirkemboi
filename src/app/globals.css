@@ -37,7 +37,12 @@ body {
 
 .animate-slideIn {
   animation: slideIn 1.5s ease-out;
-  /* Adjust the animation duration and easing function as needed */
+
+}
+
+.animated {
+  animation: slideIn 1.5s ease-out;
+
 }
 
 @keyframes fadeIn {

@@ -16,7 +16,7 @@ const Home = () => {
 	return (
 		<section
 			id="home"
-			className="bg-sky-950 ">
+			className="bg-sky-950 animate-slideIn ">
 			<div className="card ">
 				<div className="card-content">
 					<div className="flex flex-col lg:flex lg:flex-col m-10">
@@ -30,12 +30,12 @@ const Home = () => {
 						</div>
 
 						<div className="bg-sky-950 overflow-hidden ">
-							<div className="text-left bg-sky-950 transform transition-transform ease-in-out duration-500 animate-slideIn">
-								<p className="text-white text-2xl lg:text-2xl xl:text-3xl font-bold mb-2 lg:w-2/3">
+							<div className="text-left bg-sky-950 transform transition-transform ease-in-out duration-500 ">
+								<p className="text-white text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-bold mb-2 lg:w-2/3">
 									Full stack Software developer, in Nairobi, Kenya. I am
 									creative, a problem solver, and a critical thinker.
 								</p>
-								<p className="w-2/3 text-sm">
+								<p className="w-2/3 text-sm text-zinc-600 dark:text-zinc-400">
 									I&apos;m a software engineer with a strong emphasis on web
 									development. My skillset extends to encompass a wide array of
 									technologies. This extensive range of expertise enables me to
@@ -44,7 +44,7 @@ const Home = () => {
 
 								<button
 									type="button"
-									className="btn bg-sky-900 shadow-5xl rounded py-1 px-10 text-white"
+									className="btn bg-sky-900 shadow-5xl rounded py-1 px-10 text-teal-400 my-4 font-bold"
 									onClick={downloadCV}>
 									Resume
 								</button>

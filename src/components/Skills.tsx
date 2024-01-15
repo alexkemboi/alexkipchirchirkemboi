@@ -252,13 +252,15 @@ const Skills = () => {
 			id="Skills"
 			className="bg-sky-950  px-10 mb-20">
 			<div>
-				<h4 className="text-3xl font-black text-center">Skills</h4>
-				<p className="text-white text-2xl font-bold w-4/5">
+				<h4 className="text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-black text-center text-teal-400">
+					Skills
+				</h4>
+				<p className="text-zinc-600 dark:text-zinc-400 w-full">
 					I am a creative,a problem solver and a critical thinker, proficient in
 					the following technology stacks.
 				</p>
 			</div>
-			<div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+			<div className=" grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-1">
 				{skillCards}
 			</div>
 		</section>

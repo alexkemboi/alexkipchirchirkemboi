@@ -18,7 +18,7 @@ const Footer = () => {
 			className="bg-sky-950">
 			<footer className="bg-sky-950 py-5 border-t border-gray-500">
 				<div className="md:flex md:flex-row md:justify-between md:pl-10 md:pr-10 sm:flex sm:flex-col sm:justify-center sm:items-center sm:m-4">
-					<div className="rounded-full md:border p-2 w-auto sm:m-2 sm:flex sm:flex-row sm:justify-center">
+					<div className="p-2 w-auto sm:m-2 sm:flex sm:flex-row sm:justify-center">
 						<Link href="/home">
 							<span className="text-gray-300 hover:bg-sky-950 hover:text-white px-1 py-2 rounded-md text-sm font-medium">
 								Home
@@ -51,7 +51,7 @@ const Footer = () => {
 						</Link>
 					</div>
 					<div className="rounded-full  p-2  md:flex md:flex-row md:justify-end md:items-end sm:flex sm:flex-row sm:justify-center sm:items-center">
-						<p className="text-gray-400 text-sm text-center">
+						<p className="text-teal-400 text-sm text-center">
 							© Alex K. Kemboi &copy; {new Date().getFullYear()}
 						</p>
 					</div>

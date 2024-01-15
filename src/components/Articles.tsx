@@ -14,7 +14,7 @@ const Articles = () => {
 	useEffect(() => {}, []);
 
 	return (
-		<main className="flex-auto mb-10 animate-bounceIn">
+		<main className="flex-auto mb-10 animate-fadeIn">
 			<div className="px-10">
 				<div className="mx-auto w-full">
 					<div className="relative ">
@@ -40,7 +40,7 @@ const Articles = () => {
 													<div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50"></div>
 													<a href="/articles/crafting-a-design-system-for-a-multiplanetary-future">
 														<span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-														<span className="relative z-10">
+														<span className="relative z-10 text-zinc-400">
 															Crafting a design system for a multiplanetary
 															future
 														</span>

@@ -14,8 +14,8 @@ const Navbar = () => {
 
 	return (
 		<nav className="bg-sky-950">
-			<div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8">
-				<div className="relative flex items-center justify-between h-16 w-full">
+			<div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8  border-0">
+				<div className="relative flex items-center justify-between h-16 w-full ">
 					<div className="absolute inset-y-0 left-0 flex flex-row  justify-between sm:hidden  w-full">
 						<button
 							type="button"
@@ -42,36 +42,36 @@ const Navbar = () => {
 							/>
 						</div>
 					</div>
-					<div className="flex items-center justify-center sm:items-center sm:justify-center sm-border-0 md:border md:border-1 rounded-full m-auto p-2">
+					<div className=" flex items-center justify-center sm:items-center sm:justify-center sm-border-0 md:border md:border-1 border-zinc-400 rounded-full m-auto p-2">
 						<div className="hidden sm:block sm:ml-6 ">
 							<div className="flex space-x-4">
 								<Link href="/">
-									<span className="text-gray-300 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
 										Home
 									</span>
 								</Link>
 								<Link href="/about">
-									<span className="text-gray-300 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
 										About
 									</span>
 								</Link>
 								<Link href="/portfolio">
-									<span className="text-gray-300 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
 										Portfolio
 									</span>
 								</Link>
 								<Link href="/skills">
-									<span className="text-gray-300 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
 										Skills
 									</span>
 								</Link>
 								<Link href="/contact">
-									<span className="text-gray-300 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
 										Contact Us
 									</span>
 								</Link>
 								<Link href="/articles">
-									<span className="text-gray-300 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
 										Articles
 									</span>
 								</Link>
@@ -108,32 +108,32 @@ const Navbar = () => {
 					</div>
 					<div className="px-2 pt-2 pb-3 space-y-1 bg-sky-950">
 						<Link href="/">
-							<span className="text-gray-300 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
 								Home
 							</span>
 						</Link>
 						<Link href="/about">
-							<span className="text-gray-300 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
 								About
 							</span>
 						</Link>
 						<Link href="/portfolio">
-							<span className="text-gray-300 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
 								Portfolio
 							</span>
 						</Link>
 						<Link href="/skills">
-							<span className="text-gray-300 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
 								Skills
 							</span>
 						</Link>
 						<Link href="/contact">
-							<span className="text-gray-300 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
 								Contact Us
 							</span>
 						</Link>
 						<Link href="/articles">
-							<span className="text-gray-300 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
 								Articles
 							</span>
 						</Link>

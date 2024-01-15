@@ -16,7 +16,7 @@ const Home = () => {
 	return (
 		<section
 			id="home"
-			className="bg-sky-950 animate-slideIn ">
+			className="bg-sky-950 animate-fadeIn ">
 			<div className="card ">
 				<div className="card-content">
 					<div className="flex flex-col lg:flex lg:flex-col m-10">
@@ -31,7 +31,7 @@ const Home = () => {
 
 						<div className="bg-sky-950 overflow-hidden ">
 							<div className="text-left bg-sky-950 transform transition-transform ease-in-out duration-500 ">
-								<p className="text-white text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-bold mb-2 lg:w-2/3">
+								<p className="text-zinc-400 text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-bold mb-2 lg:w-2/3">
 									Full stack Software developer, in Nairobi, Kenya. I am
 									creative, a problem solver, and a critical thinker.
 								</p>
@@ -44,7 +44,7 @@ const Home = () => {
 
 								<button
 									type="button"
-									className="btn bg-sky-900 shadow-5xl rounded py-1 px-10 text-teal-400 my-4 font-bold"
+									className="btn border border-zinc-400  shadow-5xl rounded py-1 px-10 text-teal-400 my-4 font-bold"
 									onClick={downloadCV}>
 									Resume
 								</button>
@@ -57,7 +57,7 @@ const Home = () => {
 										className="text-dark">
 										<FontAwesomeIcon
 											icon={faLinkedin}
-											className="w-6 h-6 m-2"
+											className="w-6 h-6 m-2 text-zinc-400"
 										/>
 									</Link>
 									<Link
@@ -67,7 +67,7 @@ const Home = () => {
 										className="text-dark">
 										<FontAwesomeIcon
 											icon={faTwitter}
-											className="w-6 h-6 m-2"
+											className="w-6 h-6 m-2 text-zinc-400"
 										/>
 									</Link>
 									<Link
@@ -77,7 +77,7 @@ const Home = () => {
 										className="text-dark">
 										<FontAwesomeIcon
 											icon={faGithub}
-											className="w-6 h-6 m-2"
+											className="w-6 h-6 m-2 text-zinc-400"
 										/>
 									</Link>
 								</div>

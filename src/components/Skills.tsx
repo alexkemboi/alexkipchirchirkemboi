@@ -228,11 +228,11 @@ const Skills = () => {
 	const generateCards = () => {
 		return skillsData.map((skill, index) => (
 			<div
-				className="rounded hover:scale-105 flex items-start w-full m-1 p-2"
+				className="rounded hover:scale-105 flex items-start w-full m-1 p-2 animated-fadeIn"
 				key={index}>
 				<div
-					className={`w-2/3 h-full  flex flex-col rounded-l ${skill.color} p-2`}>
-					<h6 className="text-white font-bold text-center">{skill.name}</h6>
+					className={`border-l border-t border-b w-2/3 h-full  flex flex-col rounded-l  p-2`}>
+					<h6 className="text-zinc-400 font-bold text-center">{skill.name}</h6>
 					<div
 						className={`w-${skill.progress} bg-sky-950`}
 						role="progressbar"
@@ -240,7 +240,7 @@ const Skills = () => {
 						aria-valuemin={0}
 						aria-valuemax={100}></div>
 				</div>
-				<div className="w-1/3 text-center bg-white rounded-r p-2">
+				<div className="border-r border-t border-b w-1/3 text-center  rounded-r p-2">
 					{skill.icon}
 				</div>
 			</div>
@@ -252,7 +252,7 @@ const Skills = () => {
 			id="Skills"
 			className="bg-sky-950  px-10 mb-20">
 			<div>
-				<h4 className="text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-black text-center text-teal-400">
+				<h4 className="text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-bold text-center text-teal-400">
 					Skills
 				</h4>
 				<p className="text-zinc-600 dark:text-zinc-400 w-full">

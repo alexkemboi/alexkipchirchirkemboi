@@ -5,7 +5,7 @@ import Contact from "@/components/Contact";
 
 const page = () => {
 	return (
-		<div className="flex flex-col min-h-screen ">
+		<div className="flex flex-col min-h-screen bg-sky-950">
 			<header>
 				<Navbar />
 			</header>

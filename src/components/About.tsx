@@ -18,7 +18,7 @@ const About = () => {
 	};
 	useEffect(() => {}, []);
 	return (
-		<div className="md:flex md:flex-row mx-10  animate-slideIn  my-4">
+		<div className="md:flex md:flex-row mx-10  animate-fadeIn  my-4">
 			<div className="md:w-2/2 sm:w-2/2 sm:m-4 bg-sky-950  p-6 rounded-md   border border-gray-700">
 				<h1 className="text-center text-teal-400 w-50 m-auto text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-bold ">
 					About Me

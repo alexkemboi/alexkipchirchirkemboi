@@ -1,7 +1,10 @@
 "use client";
 import { useEffect } from "react";
 import Image from "next/image";
-import alex from "../images/alex.jpg";
+import alex from "../images/ikonex.jpg";
+import capture from "../images/Capture.jpg";
+import certs from "../images/certs.png";
+import afrecommerce from "../images/afrecommerce.jpg";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,24 +20,32 @@ const Portfolio = () => {
 			title: "Mediconnect",
 			description:
 				"Creating technology to empower civilians to explore space on their own terms.",
-			imageUrl: "/path/to/planetaria-image.jpg",
-			websiteUrl: "https://planetaria.tech"
+			imageUrl: certs,
+			websiteUrl: "https://mediconnectapp.netlify.app"
 		},
 		{
 			id: 2,
 			title: "Africommerce",
 			description:
 				"A platform connecting tech enthusiasts and fostering collaboration.",
-			imageUrl: "/path/to/techhub-image.jpg",
-			websiteUrl: "https://techhub.com"
+			imageUrl: afrecommerce,
+			websiteUrl: "https://afrecommerce.netlify.app"
 		},
 		{
 			id: 3,
 			title: "Ikonex",
 			description:
 				"An interactive coding platform for learning and practicing programming.",
-			imageUrl: "/path/to/codesnap-image.jpg",
+			imageUrl: alex,
 			websiteUrl: "https://ikonex.co.ke"
+		},
+		{
+			id: 4,
+			title: "Personal Portfolio",
+			description:
+				"This a personal portfolio detailing my skill set and projects completed.",
+			imageUrl: capture,
+			websiteUrl: "https://alexkipchirchirkemboi.netlify.app"
 		}
 	];
 
@@ -55,25 +66,23 @@ const Portfolio = () => {
 				something that piques your interest, check out the code and contribute
 				if you have ideas for how it can be improved.
 			</p>
-			<div className=" grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-1">
+			<div className=" grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 sm:gap-1 px-10">
 				{portfolioData.map((item) => (
 					<div
 						key={item.id}
-						className="mx-10 px-10 group group-hover:scale-100 group-hover:opacity-100 my-10 flex flex-col justify-start rounded">
-						<div className="py-4 relative flex flex-col items-start">
-							<div className="relative z-10 flex h-12 w-12 bg-white items-center justify-center rounded-full dark:bg-sky-900 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+						className=" p-10 group  group-hover:opacity-100  flex flex-col justify-start rounded m-10 border">
+						<div className="relative flex flex-col items-start">
+							<div className="relative z-10 bg-white items-center justify-center  dark:bg-sky-900 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
 								<Image
 									alt=""
 									loading="lazy"
-									width="32"
-									height="32"
 									decoding="async"
 									data-nimg="1"
-									className="h-8 w-8 rounded-full"
-									src={alex}
+									className=" rounded shadow "
+									src={item.imageUrl}
 								/>
 							</div>
-							<h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+							<h2 className="mt-1 text-base font-semibold text-zinc-800 dark:text-zinc-100">
 								<div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50"></div>
 								<a href={item.websiteUrl}>
 									<span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
@@ -85,7 +94,7 @@ const Portfolio = () => {
 							<p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
 								{item.description}
 							</p>
-							<p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+							<p className="relative z-10  flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
 								<svg
 									viewBox="0 0 24 24"
 									aria-hidden="true"

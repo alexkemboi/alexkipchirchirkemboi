@@ -111,7 +111,3 @@ body {
   animation: scaleIn 0.3s ease-in-out;
   transform: scale(1.1);
 }
-
-.hoverr:hover {
-  background-color: red;
-}

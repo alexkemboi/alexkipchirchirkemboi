@@ -1,8 +1,10 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+
 import alex from "../images/alex.jpg";
 import Image from "next/image";
 const Navbar = () => {
@@ -11,10 +13,24 @@ const Navbar = () => {
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
 	};
+	const [darkMode, setDarkMode] = useState(false);
+
+	useEffect(() => {
+		const body = document.body;
+		if (darkMode) {
+			body.classList.add("dark-mode");
+		} else {
+			body.classList.remove("dark-mode");
+		}
+	}, [darkMode]);
+
+	const toggleDarkMode = () => {
+		setDarkMode((prevMode) => !prevMode);
+	};
 
 	return (
 		<nav className="bg-sky-950">
-			<div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8  border-0">
+			<div className="max-w-full flex mx-auto px-2 sm:px-6 lg:px-8  border-0">
 				<div className="relative flex items-center justify-between h-16 w-full ">
 					<div className="absolute inset-y-0 left-0 flex flex-row  justify-between sm:hidden  w-full">
 						<button
@@ -79,6 +95,25 @@ const Navbar = () => {
 						</div>
 					</div>
 				</div>
+				<button
+					className="w-10  m-4"
+					onClick={toggleDarkMode}>
+					{darkMode ? (
+						<>
+							<FontAwesomeIcon
+								icon={faMoon}
+								className="w-6 h-6 m-2 text-zinc-400"
+							/>
+						</>
+					) : (
+						<>
+							<FontAwesomeIcon
+								icon={faSun}
+								className="w-6 h-6 m-2 text-zinc-400"
+							/>
+						</>
+					)}
+				</button>
 			</div>
 			{isOpen && (
 				<div

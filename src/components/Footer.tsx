@@ -15,7 +15,7 @@ const Footer = () => {
 	return (
 		<section
 			id="footer"
-			className="bg-sky-950 mt-4">
+			className="bg-sky-950 ">
 			<footer className="bg-sky-950 py-5 border-t border-gray-500">
 				<div className="md:flex md:flex-row md:justify-between md:pl-10 md:pr-10 sm:flex sm:flex-col sm:justify-center sm:items-center sm:m-4">
 					<div className="p-2 w-auto sm:m-2 sm:flex sm:flex-row sm:justify-center">

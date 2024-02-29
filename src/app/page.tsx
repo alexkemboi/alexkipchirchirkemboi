@@ -10,7 +10,7 @@ import Contact from "@/components/Contact";
 
 const page = () => {
 	return (
-		<div className="flex flex-col min-h-screen container m-auto bg-sky-950">
+		<div className="flex flex-col min-h-screen  m-auto bg-sky-950">
 			<main className="flex-1 bg-sky-950">
 				<Home />
 				<About />

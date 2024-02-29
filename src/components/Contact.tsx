@@ -15,7 +15,7 @@ const Contact = () => {
 	return (
 		<section
 			id="contact border "
-			className="bg-sky-950 px-10 animate-fadeIn">
+			className="bg-sky-950 px-10 animate-fadeIn pb-5">
 			<div className="card border border-gray-700 rounded ">
 				<div className="card-header text-zinc-600">
 					<h1 className="text-center text-3xl md:text-3xl lg:text-3xl font-bold font-bold text-teal-500">

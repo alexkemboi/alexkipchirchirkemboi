@@ -24,7 +24,7 @@ export default function RootLayout({
 					href="/favicon.ico"
 				/>
 			</head>
-			<body className="bg-sky-900 mx-10">
+			<body className="bg-sky-50 mx-50">
 				<div className="mx-auto border border-gray-500 animated-bounceIn">
 					<header>
 						<Navbar />

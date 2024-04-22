@@ -1,17 +1,10 @@
 "use client";
 import { useEffect } from "react";
 import Image from "next/image";
-import alex from "../images/ikonex.jpg";
-import capture from "../images/Capture.jpg";
-import certs from "../images/certs.png";
-import afrecommerce from "../images/afrecommerce.jpg";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faLinkedin,
-	faTwitter,
-	faGithub
-} from "@fortawesome/free-brands-svg-icons";
+import alex from "@/images/ikonex.jpg";
+import capture from "@/images/Capture.jpg";
+import certs from "@/images/certs.png";
+import afrecommerce from "@/images/afrecommerce.jpg";
 
 const Portfolio = () => {
 	const portfolioData = [
@@ -49,7 +42,7 @@ const Portfolio = () => {
 		}
 	];
 
-	useEffect(() => {}, []);
+	useEffect(() => { }, []);
 	return (
 		<section
 			id="Portfolio"
@@ -66,13 +59,13 @@ const Portfolio = () => {
 				something that piques your interest, check out the code and contribute
 				if you have ideas for how it can be improved.
 			</p>
-			<div className=" grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-2 sm:gap-1 px-10">
+			<div className=" grid grid-cols-1 md:grid-cols-4 sm:grid-cols-1 lg:grid-cols-4 sm:gap-1 px-10">
 				{portfolioData.map((item) => (
 					<div
 						key={item.id}
 						className=" p-10 group  group-hover:opacity-100  flex flex-col justify-start rounded m-10 border">
 						<div className="relative flex flex-col items-start">
-							<div className="relative z-10 bg-white items-center justify-center  dark:bg-sky-900 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+							<div className="relative z-10 bg-white items-center justify-center  dark:bg-sky-900 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0">
 								<Image
 									alt=""
 									loading="lazy"

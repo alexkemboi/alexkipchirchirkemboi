@@ -55,7 +55,7 @@ const Articles = () => {
 			<div className="px-10">
 				<div className="mx-auto w-full">
 					<div className="relative ">
-						<div className="mx-auto lg:max-w-5xl">
+						<div className="mx-auto">
 							<header className="mx-w-2xl group group-hover:opacity-100">
 								<h1 className="font-bold text-3xl lg:text-2xl sm:text-5xl xl:text-3xl text-center text-teal-400">
 									Articles
@@ -68,9 +68,9 @@ const Articles = () => {
 									in chronological order.
 								</p>
 							</header>
-							<div className="mt-4 max-w-2xl ">
+							<div className="mt-4  ">
 								<div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-									<div className="flex max-w-3xl flex-col space-y-1">
+									<div className="flex  flex-col space-y-1">
 										{articlesData.map((article) => (
 											<article
 												key={article.id}
@@ -113,7 +113,7 @@ const Articles = () => {
 														</svg>
 													</div>
 												</div>
-												<time className="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500">
+												<time className="mt-1 hidden md:block relative z-10 order-first mb-3  items-center text-sm text-zinc-400 dark:text-zinc-500">
 													{article.date}
 												</time>
 											</article>

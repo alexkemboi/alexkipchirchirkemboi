@@ -30,7 +30,7 @@ const Skills = () => {
 
 	useEffect(() => {
 		setSkillCards(generateCards());
-	}, []);
+	});
 	const skillsData = [
 		{
 			id: 1,

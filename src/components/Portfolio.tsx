@@ -63,7 +63,7 @@ const Portfolio = () => {
 				{portfolioData.map((item) => (
 					<div
 						key={item.id}
-						className=" p-10 group  group-hover:opacity-100  flex flex-col justify-start rounded m-10 border">
+						className=" p-10 group  group-hover:opacity-100  flex flex-col justify-start rounded m-15 border">
 						<div className="relative flex flex-col items-start">
 							<div className="relative z-10 bg-white items-center justify-center  dark:bg-sky-900 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0">
 								<Image

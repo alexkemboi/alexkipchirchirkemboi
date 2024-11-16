@@ -1,10 +1,10 @@
 "use client";
 import { useEffect } from "react";
 import Image from "next/image";
-import alex from '@/images/ikonex.png';
-import capture from '@/images/capture.png';
-import certs from '@/images/certs.jpg';
-import afrecommerce from '@/images/afrecommerce.jpg';
+import alex from '../images/ikonex.jpg';
+import capture from '../images/capture.png';
+import certs from '../images/certs.jpg';
+import afrecommerce from '../images/afrecommerce.jpg';
 
 const Portfolio = () => {
 	const portfolioData = [

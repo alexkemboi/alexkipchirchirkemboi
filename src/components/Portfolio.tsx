@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import alex from '@/images/ikonex.jpg';
-import capture from '@/images/capture.jpg';
+import capture from '@/images/Capture.jpg';
 import certs from '@/images/certs.png';
 import afrecommerce from '@/images/afrecommerce.jpg';
 

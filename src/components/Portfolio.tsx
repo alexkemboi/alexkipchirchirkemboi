@@ -1,10 +1,10 @@
 "use client";
 import { useEffect } from "react";
 import Image from "next/image";
-import alex from '../images/ikonex.jpg';
-import capture from '../images/capture.png';
-import certs from '../images/certs.jpg';
-import afrecommerce from '../images/afrecommerce.jpg';
+// import alex from '../images/ikonex.jpg';
+// import capture from '../images/capture.png';
+// import certs from '../images/certs.jpg';
+// import afrecommerce from '../images/afrecommerce.jpg';
 
 const Portfolio = () => {
 	const portfolioData = [
@@ -13,7 +13,7 @@ const Portfolio = () => {
 			title: "Mediconnect",
 			description:
 				"Creating technology to empower civilians to explore space on their own terms.",
-			imageUrl: certs,
+			imageUrl: "", //certs,
 			websiteUrl: "https://mediconnectapp.netlify.app"
 		},
 		{
@@ -21,7 +21,7 @@ const Portfolio = () => {
 			title: "Africommerce",
 			description:
 				"A platform connecting tech enthusiasts and fostering collaboration.",
-			imageUrl: afrecommerce,
+			imageUrl: "",// afrecommerce,
 			websiteUrl: "https://afrecommerce.netlify.app"
 		},
 		{
@@ -29,7 +29,7 @@ const Portfolio = () => {
 			title: "Ikonex",
 			description:
 				"An interactive coding platform for learning and practicing programming.",
-			imageUrl: alex,
+			imageUrl: "",// alex,
 			websiteUrl: "https://ikonex.co.ke"
 		},
 		{
@@ -37,7 +37,7 @@ const Portfolio = () => {
 			title: "Personal Portfolio",
 			description:
 				"This a personal portfolio detailing my skill set and projects completed.",
-			imageUrl: capture,
+			imageUrl: "",// capture,
 			websiteUrl: "https://alexkipchirchirkemboi.netlify.app"
 		}
 	];

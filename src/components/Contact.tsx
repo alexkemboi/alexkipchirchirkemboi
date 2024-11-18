@@ -19,7 +19,7 @@ const Contact = () => {
 		e.preventDefault();
 
 		try {
-			const response = await fetch("https://alexkipchirchirkemboi.netlify.app/api", {
+			const response = await fetch("https://dainty-druid-2763c3.netlify.app/api", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

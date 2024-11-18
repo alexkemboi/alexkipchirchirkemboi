@@ -41,7 +41,7 @@ export async function POST(req, res) {
             const mailOptions = {
                 from: email, // Sender's email
                 to: "alexkemboi97@gmail.com", // Your email address
-                subject: `${projectName.upperCase()}`,
+                subject: `${projectName}`,
                 html: `
                     <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
                         <h2 style="color: #007acc;">Project Requirement Submission</h2>

@@ -45,7 +45,7 @@ const Navbar = () => {
 								className="h-6 w-6"
 							/>
 						</button>
-						<div className="relative m-2 flex h-12 w-full bg-white bg-white p-2 items-end justify-end rounded-full dark:bg-sky-950 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 ml-auto">
+						<div className="relative m-2 flex h-12 w-full bg-white  p-2 items-end justify-end rounded-full dark:bg-sky-950 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 ml-auto">
 							<Image
 								alt=""
 								loading="lazy"

@@ -5,7 +5,7 @@ export async function POST(req, res) {
     const { projectName, contactPerson, email, description, budget, deadline, goals } = await req.json();
 
 
-    if (!name || !email || !message) {
+    if (!projectName || !email || !description) {
         return new Response(JSON.stringify({ error: "All fields are required." }), {
             status: 400,
         });

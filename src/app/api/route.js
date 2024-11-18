@@ -5,11 +5,11 @@ export async function POST(req, res) {
     const { projectName, contactPerson, email, description, budget, deadline, goals } = await req.json();
 
 
-    if (!projectName || !email || !description) {
-        return new Response(JSON.stringify({ error: "All fields are required." }), {
-            status: 400,
-        });
-    }
+    // if (!projectName || !email || !description) {
+    //     return new Response(JSON.stringify({ error: "All fields are required." }), {
+    //         status: 400,
+    //     });
+    // }
 
     try {
         // Configure the Nodemailer transport
@@ -41,7 +41,7 @@ export async function POST(req, res) {
             const mailOptions = {
                 from: email, // Sender's email
                 to: "alexkemboi97@gmail.com", // Your email address
-                subject: `New Project Requirement from ${contactPerson}`,
+                subject: `${projectName.upperCase()}`,
                 html: `
                     <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
                         <h2 style="color: #007acc;">Project Requirement Submission</h2>

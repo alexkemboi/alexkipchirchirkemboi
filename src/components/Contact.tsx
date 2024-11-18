@@ -124,13 +124,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ProjectRequirements = () => {
 	const [formData, setFormData] = useState({
-		projectName: "",
-		contactPerson: "",
-		email: "",
-		description: "",
-		budget: "",
-		deadline: "",
-		goals: "",
+		projectName: "test",
+		contactPerson: "test",
+		email: "test",
+		description: "test",
+		budget: "test",
+		deadline: "test",
+		goals: "test",
 	});
 
 	const handleChange = (e: { target: { name: any; value: any; }; }) => {

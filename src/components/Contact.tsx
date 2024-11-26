@@ -58,7 +58,7 @@
 // 							</label>
 // 							<input
 // 								type="text"
-// 								className="w-full border text-gray-200 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
+// 								className="w-full border text-teal-500 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
 // 								id="name"
 // 								name="name"
 // 								value={formData.name}
@@ -72,7 +72,7 @@
 // 							</label>
 // 							<input
 // 								type="email"
-// 								className="w-full border text-gray-200 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
+// 								className="w-full border text-teal-500 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
 // 								id="email"
 // 								name="email"
 // 								value={formData.email}
@@ -85,7 +85,7 @@
 // 								Message
 // 							</label>
 // 							<textarea
-// 								className="w-full border text-gray-200 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
+// 								className="w-full border text-teal-500 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
 // 								id="message"
 // 								name="message"
 // 								rows={5}
@@ -173,7 +173,7 @@ const ProjectRequirements = () => {
 		<section id="project-requirements" className="bg-sky-950 px-10 py-5">
 			<div className="card border border-gray-300  rounded-lg shadow-lg">
 				<div className="card-header">
-					<h1 className="text-center text-2xl font-bold text-white">
+					<h1 className="text-center text-2xl font-bold text-teal-500">
 						SUBMIT YOUR PROJECT REQUIREMENTS
 					</h1>
 				</div>
@@ -185,7 +185,7 @@ const ProjectRequirements = () => {
 							</label>
 							<input
 								type="text"
-								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
+								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="projectName"
 								name="projectName"
 								value={formData.projectName}
@@ -199,7 +199,7 @@ const ProjectRequirements = () => {
 							</label>
 							<input
 								type="text"
-								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
+								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="contactPerson"
 								name="contactPerson"
 								value={formData.contactPerson}
@@ -213,7 +213,7 @@ const ProjectRequirements = () => {
 							</label>
 							<input
 								type="email"
-								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
+								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="email"
 								name="email"
 								value={formData.email}
@@ -226,7 +226,7 @@ const ProjectRequirements = () => {
 								Project Description
 							</label>
 							<textarea
-								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
+								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="description"
 								name="description"
 								rows={4}
@@ -241,7 +241,7 @@ const ProjectRequirements = () => {
 								</label>
 								<input
 									type="number"
-									className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
+									className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 									id="budget"
 									name="budget"
 									value={formData.budget}
@@ -255,7 +255,7 @@ const ProjectRequirements = () => {
 								</label>
 								<input
 									type="date"
-									className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
+									className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 									id="deadline"
 									name="deadline"
 									value={formData.deadline}
@@ -269,7 +269,7 @@ const ProjectRequirements = () => {
 								Project Goals
 							</label>
 							<textarea
-								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
+								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="goals"
 								name="goals"
 								rows={3}

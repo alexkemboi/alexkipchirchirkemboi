@@ -16,7 +16,7 @@ const About = () => {
 	const toggleReadMore = () => {
 		setShowMore(!showMore);
 	};
-	useEffect(() => {}, []);
+	useEffect(() => { }, []);
 	return (
 		<div className="md:flex md:flex-row mx-10  animate-fadeIn  my-4">
 			<div className="md:w-2/2 sm:w-2/2 sm:m-4 bg-sky-950  p-6 rounded-md   border border-gray-700">
@@ -39,7 +39,13 @@ const About = () => {
 					<button
 						className="btn btn-link text-teal-400 text-sm mt-2"
 						onClick={toggleReadMore}>
-						Read More &gt;
+
+						<a href={`/aboutme`}>
+							<span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+							<span className="relative z-10 text-teal-500">
+								Read More &gt;
+							</span>
+						</a>
 					</button>
 				)}
 			</div>

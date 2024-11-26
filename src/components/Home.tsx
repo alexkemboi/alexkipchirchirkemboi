@@ -11,8 +11,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const Home = () => {
-	const downloadCV = () => {};
-	useEffect(() => {}, []);
+	const downloadCV = () => { };
+	useEffect(() => { }, []);
 	return (
 		<section
 			id="home"
@@ -46,7 +46,13 @@ const Home = () => {
 									type="button"
 									className="btn border border-zinc-400  shadow-5xl rounded py-1 px-10 text-teal-400 my-4 font-bold"
 									onClick={downloadCV}>
-									Resume
+									<a href={`/resume`}>
+										<span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
+										<span className="relative z-10 text-teal-500">
+											Resume &gt;
+										</span>
+									</a>
+
 								</button>
 
 								<div className="flex flex-row">

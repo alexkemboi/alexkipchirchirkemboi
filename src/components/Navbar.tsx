@@ -15,14 +15,14 @@ const Navbar = () => {
 	};
 	const [darkMode, setDarkMode] = useState(false);
 
-	useEffect(() => {
-		const body = document.body;
-		if (darkMode) {
-			body.classList.add("dark-mode");
-		} else {
-			body.classList.remove("dark-mode");
-		}
-	}, [darkMode]);
+	// useEffect(() => {
+	// 	const body = document.body;
+	// 	if (darkMode) {
+	// 		body.classList.add("dark-mode");
+	// 	} else {
+	// 		body.classList.remove("dark-mode");
+	// 	}
+	// }, [darkMode]);
 
 	const toggleDarkMode = () => {
 		setDarkMode((prevMode) => !prevMode);
@@ -38,7 +38,8 @@ const Navbar = () => {
 							className="inline-flex items-center px-10 rounded-md text-gray-400 hover:text-white hover:bg-sky-950 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
 							aria-controls="mobile-menu"
 							aria-expanded="false"
-							onClick={toggleMenu}>
+						// onClick={toggleMenu}
+						>
 							<span className="sr-only">Open main menu</span>
 							<FontAwesomeIcon
 								icon={faBars}
@@ -95,7 +96,7 @@ const Navbar = () => {
 						</div>
 					</div>
 				</div>
-				<button
+				{/* <button
 					className="w-10  m-4"
 					onClick={toggleDarkMode}>
 					{darkMode ? (
@@ -113,7 +114,7 @@ const Navbar = () => {
 							/>
 						</>
 					)}
-				</button>
+				</button> */}
 			</div>
 			{isOpen && (
 				<div

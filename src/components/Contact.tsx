@@ -58,7 +58,7 @@
 // 							</label>
 // 							<input
 // 								type="text"
-// 								className="w-full border text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
+// 								className="w-full border text-gray-200 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
 // 								id="name"
 // 								name="name"
 // 								value={formData.name}
@@ -72,7 +72,7 @@
 // 							</label>
 // 							<input
 // 								type="email"
-// 								className="w-full border text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
+// 								className="w-full border text-gray-200 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
 // 								id="email"
 // 								name="email"
 // 								value={formData.email}
@@ -85,7 +85,7 @@
 // 								Message
 // 							</label>
 // 							<textarea
-// 								className="w-full border text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
+// 								className="w-full border text-gray-200 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
 // 								id="message"
 // 								name="message"
 // 								rows={5}
@@ -141,7 +141,7 @@ const ProjectRequirements = () => {
 		e.preventDefault();
 
 		try {
-			const response = await fetch("https://kemboialex.netlify.app/api", {
+			const response = await fetch("http://localhost:3000/api/sendemail", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -170,22 +170,22 @@ const ProjectRequirements = () => {
 	};
 
 	return (
-		<section id="project-requirements" className="bg-gray-50 px-10 py-5">
-			<div className="card border border-gray-300 rounded-lg shadow-lg">
+		<section id="project-requirements" className="bg-sky-950 px-10 py-5">
+			<div className="card border border-gray-300  rounded-lg shadow-lg">
 				<div className="card-header">
-					<h1 className="text-center text-2xl font-bold text-gray-800">
-						Submit Your Project Requirements
+					<h1 className="text-center text-2xl font-bold text-white">
+						SUBMIT YOUR PROJECT REQUIREMENTS
 					</h1>
 				</div>
 				<div className="card-body px-8 py-6">
 					<form id="requirementsForm" onSubmit={handleSubmit}>
 						<div className="mb-4">
-							<label htmlFor="projectName" className="text-gray-700 block">
+							<label htmlFor="projectName" className="text-white block">
 								Project Name
 							</label>
 							<input
 								type="text"
-								className="w-full border rounded-lg px-3 py-2"
+								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="projectName"
 								name="projectName"
 								value={formData.projectName}
@@ -194,12 +194,12 @@ const ProjectRequirements = () => {
 							/>
 						</div>
 						<div className="mb-4">
-							<label htmlFor="contactPerson" className="text-gray-700 block">
+							<label htmlFor="contactPerson" className="text-white block">
 								Contact Person
 							</label>
 							<input
 								type="text"
-								className="w-full border rounded-lg px-3 py-2"
+								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="contactPerson"
 								name="contactPerson"
 								value={formData.contactPerson}
@@ -208,12 +208,12 @@ const ProjectRequirements = () => {
 							/>
 						</div>
 						<div className="mb-4">
-							<label htmlFor="email" className="text-gray-700 block">
+							<label htmlFor="email" className="text-white block">
 								Email Address
 							</label>
 							<input
 								type="email"
-								className="w-full border rounded-lg px-3 py-2"
+								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="email"
 								name="email"
 								value={formData.email}
@@ -222,11 +222,11 @@ const ProjectRequirements = () => {
 							/>
 						</div>
 						<div className="mb-4">
-							<label htmlFor="description" className="text-gray-700 block">
+							<label htmlFor="description" className="text-white block">
 								Project Description
 							</label>
 							<textarea
-								className="w-full border rounded-lg px-3 py-2"
+								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="description"
 								name="description"
 								rows={4}
@@ -236,12 +236,12 @@ const ProjectRequirements = () => {
 						</div>
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
 							<div>
-								<label htmlFor="budget" className="text-gray-700 block">
+								<label htmlFor="budget" className="text-white block">
 									Estimated Budget ($)
 								</label>
 								<input
 									type="number"
-									className="w-full border rounded-lg px-3 py-2"
+									className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 									id="budget"
 									name="budget"
 									value={formData.budget}
@@ -250,12 +250,12 @@ const ProjectRequirements = () => {
 								/>
 							</div>
 							<div>
-								<label htmlFor="deadline" className="text-gray-700 block">
+								<label htmlFor="deadline" className="text-white block">
 									Deadline
 								</label>
 								<input
 									type="date"
-									className="w-full border rounded-lg px-3 py-2"
+									className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 									id="deadline"
 									name="deadline"
 									value={formData.deadline}
@@ -265,11 +265,11 @@ const ProjectRequirements = () => {
 							</div>
 						</div>
 						<div className="mb-4">
-							<label htmlFor="goals" className="text-gray-700 block">
+							<label htmlFor="goals" className="text-white block">
 								Project Goals
 							</label>
 							<textarea
-								className="w-full border rounded-lg px-3 py-2"
+								className="w-full border text-gray-200 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
 								id="goals"
 								name="goals"
 								rows={3}
@@ -280,7 +280,7 @@ const ProjectRequirements = () => {
 						<div className="text-center">
 							<button
 								type="submit"
-								className="bg-blue-600 text-white rounded-lg px-6 py-2 hover:bg-blue-700">
+								className="bg-sky-950 border border-gray-100  text-white rounded-lg px-6 py-2 hover:bg-sky-500">
 								Submit Requirements
 							</button>
 						</div>

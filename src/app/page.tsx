@@ -14,9 +14,9 @@ const page = () => {
 			<main className="flex-1 bg-sky-950">
 				<Home />
 				<About />
-				{/* <Skills />
+				<Skills />
 				<Portfolio />
-				<Articles /> */}
+				<Articles />
 				<Contact />
 			</main>
 		</div>

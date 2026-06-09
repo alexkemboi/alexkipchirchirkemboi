@@ -111,7 +111,7 @@ export default function Contact() {
               text-cyan-400
             "
           >
-            Let's Work Together
+            Let&apos;s Work Together
           </span>
 
           <h2 className="mt-6 text-5xl font-black text-white">
@@ -122,7 +122,7 @@ export default function Contact() {
           </h2>
 
           <p className="mt-6 max-w-3xl mx-auto text-lg text-zinc-400">
-            Tell me about your project and I'll
+            Tell me about your project and I&apos;ll
             help turn your idea into a scalable,
             modern solution.
           </p>

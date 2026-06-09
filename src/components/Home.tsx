@@ -51,7 +51,7 @@ export default function Home() {
             </h1>
 
             <p className="mt-8 text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed">
-              I'm Alex Kemboi, a Full Stack Software Developer based in
+              I&apos;m Alex Kemboi, a Full Stack Software Developer based in
               Nairobi, Kenya. I specialize in building scalable web
               applications, enterprise systems, and modern digital solutions
               that solve real-world business problems.

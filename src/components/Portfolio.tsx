@@ -90,7 +90,7 @@ export default function Portfolio() {
 
           <p className="mt-6 max-w-3xl mx-auto text-lg text-zinc-400">
             A selection of projects, products, and enterprise solutions
-            I've designed and developed over the years.
+            I&apos;ve designed and developed over the years.
           </p>
         </motion.div>
 

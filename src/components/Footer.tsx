@@ -160,8 +160,8 @@ const Footer = () => {
             </h3>
 
             <p className="text-zinc-400 leading-relaxed">
-              Whether you're building a startup, enterprise
-              platform, or custom software solution, let's
+              Whether you&apos;re building a startup, enterprise
+              platform, or custom software solution, let&apos;s
               discuss your next project.
             </p>
 

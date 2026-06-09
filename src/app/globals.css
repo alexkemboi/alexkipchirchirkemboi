@@ -34,7 +34,13 @@
     opacity: 1;
   }
 }
+html {
+  scroll-behavior: smooth;
+}
 
+body {
+  overflow-x: hidden;
+}
 .animate-slideIn {
   animation: slideIn 1.5s ease-out;
 
@@ -44,7 +50,13 @@
   animation: slideIn 1.5s ease-out;
 
 }
+.nav-link {
+  @apply px-4 py-2 rounded-xl text-zinc-400 transition-all duration-300;
+}
 
+.nav-link:hover {
+  @apply text-white bg-white/10;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -1,270 +1,191 @@
 "use client";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import alex from "../images/alex.jpg";
-import Link from "next/link";
+
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
 import {
-	faHtml5,
-	faCss3Alt,
-	faJs,
-	faBootstrap,
-	faReact,
-	faJava,
-	faAws,
-	faNodeJs,
-	faAngular,
-	faCuttlefish,
-	faGithub
+  faHtml5,
+  faCss3Alt,
+  faJs,
+  faBootstrap,
+  faReact,
+  faJava,
+  faAws,
+  faNodeJs,
+  faAngular,
+  faCuttlefish,
+  faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+
 import {
-	faCloud,
-	faCode,
-	faDatabase,
-	faCode as faDatabaseSolid
+  faCloud,
+  faCode,
+  faDatabase,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Skills = () => {
-	const [skillCards, setSkillCards] = useState<JSX.Element[] | undefined>();
+export default function Skills() {
+  const skills = [
+    { name: "HTML5", icon: faHtml5, color: "text-orange-500", progress: 95 },
+    { name: "CSS3", icon: faCss3Alt, color: "text-blue-500", progress: 92 },
+    { name: "JavaScript", icon: faJs, color: "text-yellow-400", progress: 95 },
+    { name: "Bootstrap", icon: faBootstrap, color: "text-purple-500", progress: 90 },
+    { name: "React", icon: faReact, color: "text-cyan-400", progress: 95 },
+    { name: "MongoDB", icon: faDatabase, color: "text-green-500", progress: 85 },
+    { name: "Java", icon: faJava, color: "text-red-500", progress: 90 },
+    { name: "AWS", icon: faAws, color: "text-orange-400", progress: 80 },
+    { name: "C", icon: faCode, color: "text-blue-400", progress: 85 },
+    { name: "NodeJS", icon: faNodeJs, color: "text-green-500", progress: 90 },
+    { name: "MySQL", icon: faDatabase, color: "text-sky-500", progress: 92 },
+    { name: "Angular", icon: faAngular, color: "text-red-600", progress: 88 },
+    { name: "Azure", icon: faCloud, color: "text-cyan-500", progress: 85 },
+    { name: "C#", icon: faCuttlefish, color: "text-purple-500", progress: 90 },
+    { name: "ASP.NET", icon: faCode, color: "text-violet-500", progress: 92 },
+    { name: "Git & GitHub", icon: faGithub, color: "text-white", progress: 95 },
+  ];
 
-	useEffect(() => {
-		setSkillCards(generateCards());
-	});
-	const skillsData = [
-		{
-			id: 1,
-			name: "HTML5",
-			color: "bg-red-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faHtml5}
-					className="text-red-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 2,
-			name: "CSS3",
-			color: "bg-gray-800",
-			icon: (
-				<FontAwesomeIcon
-					icon={faCss3Alt}
-					className="text-gray-800 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 3,
-			name: "Javascript",
-			color: "bg-yellow-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faJs}
-					className="text-yellow-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 4,
-			name: "Bootstrap",
-			color: "bg-purple-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faBootstrap}
-					className="text-purple-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 5,
-			name: "React",
-			color: "bg-blue-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faReact}
-					className="text-blue-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 6,
-			name: "MongoDB",
-			color: "bg-yellow-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faDatabase}
-					className="text-yellow-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 7,
-			name: "Java",
-			color: "bg-blue-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faJava}
-					className="text-blue-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 8,
-			name: "AWS",
-			color: "bg-green-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faAws}
-					className="text-green-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 9,
-			name: "C",
-			color: "bg-red-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faCode}
-					className="text-red-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 10,
-			name: "NodeJS",
-			color: "bg-gray-600",
-			icon: (
-				<FontAwesomeIcon
-					icon={faNodeJs}
-					className="text-gray-600 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 11,
-			name: "MySQL",
-			color: "bg-green-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faDatabase}
-					className="text-green-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 12,
-			name: "Angular",
-			color: "bg-red-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faAngular}
-					className="text-red-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 13,
-			name: "Azure",
-			color: "bg-gray-800",
-			icon: (
-				<FontAwesomeIcon
-					icon={faCloud}
-					className="text-gray-800 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 14,
-			name: "C#",
-			color: "bg-gray-600",
-			icon: (
-				<FontAwesomeIcon
-					icon={faCuttlefish}
-					className="text-gray-600 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 15,
-			name: "ASP.NET",
-			color: "bg-purple-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faCode}
-					className="text-purple-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		},
-		{
-			id: 16,
-			name: "Git",
-			color: "bg-blue-500",
-			icon: (
-				<FontAwesomeIcon
-					icon={faGithub}
-					className="text-blue-500 text-2xl mx-auto text-center"
-				/>
-			),
-			progress: 80
-		}
-	];
-	const generateCards = () => {
-		return skillsData.map((skill, index) => (
-			<div
-				className="rounded hover:scale-105 flex items-start w-full m-1 p-2 animated-fadeIn"
-				key={index}>
-				<div
-					className={`border-l border-t border-b w-2/3 h-full  flex flex-col rounded-l  p-2`}>
-					<h6 className="text-zinc-400 font-bold text-center">{skill.name}</h6>
-					<div
-						className={`w-${skill.progress} bg-sky-950`}
-						role="progressbar"
-						aria-valuenow={skill.progress}
-						aria-valuemin={0}
-						aria-valuemax={100}></div>
-				</div>
-				<div className="border-r border-t border-b w-1/3 text-center  rounded-r p-2">
-					{skill.icon}
-				</div>
-			</div>
-		));
-	};
+  return (
+    <section
+      id="skills"
+      className="py-24 px-4 md:px-8 lg:px-12"
+    >
+      <div className="max-w-7xl mx-auto">
 
-	return (
-		<section
-			id="Skills"
-			className="bg-sky-950  px-10 mb-20">
-			<div>
-				<h4 className="text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-bold text-center text-teal-400">
-					Skills
-				</h4>
-				<p className="text-zinc-600 dark:text-zinc-400 w-full">
-					I am a creative,a problem solver and a critical thinker, proficient in
-					the following technology stacks.
-				</p>
-			</div>
-			<div className=" grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-1">
-				{skillCards}
-			</div>
-		</section>
-	);
-};
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="inline-flex rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-400">
+            Technical Expertise
+          </span>
 
-export default Skills;
+          <h2 className="mt-6 text-4xl md:text-5xl font-black text-white">
+            Skills &
+            <span className="block bg-gradient-to-r from-cyan-400 to-sky-500 bg-clip-text text-transparent">
+              Technologies
+            </span>
+          </h2>
+
+          <p className="mt-6 max-w-3xl mx-auto text-lg text-zinc-400 leading-relaxed">
+            Over the years I have worked across enterprise software,
+            cloud platforms, modern web technologies, databases,
+            DevOps tools, and scalable application architectures.
+          </p>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {skills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.03,
+              }}
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+              }}
+              className="
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/5
+                backdrop-blur-xl
+                p-6
+                shadow-lg
+                hover:border-cyan-500/30
+                transition-all
+              "
+            >
+              <div className="flex items-center justify-between mb-5">
+                <FontAwesomeIcon
+                  icon={skill.icon}
+                  className={`text-4xl ${skill.color}`}
+                />
+
+                <span className="text-cyan-400 font-bold">
+                  {skill.progress}%
+                </span>
+              </div>
+
+              <h3 className="text-white font-semibold text-lg">
+                {skill.name}
+              </h3>
+
+              <div className="mt-5 h-2 rounded-full bg-slate-800 overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{
+                    width: `${skill.progress}%`,
+                  }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 1.2,
+                    ease: "easeOut",
+                  }}
+                  className="
+                    h-full
+                    rounded-full
+                    bg-gradient-to-r
+                    from-cyan-500
+                    to-sky-500
+                  "
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom Stats */}
+        <div className="mt-20 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+
+            <div>
+              <h3 className="text-4xl font-black text-cyan-400">
+                16+
+              </h3>
+              <p className="text-zinc-500 mt-2">
+                Technologies
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-4xl font-black text-cyan-400">
+                50+
+              </h3>
+              <p className="text-zinc-500 mt-2">
+                Projects
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-4xl font-black text-cyan-400">
+                5+
+              </h3>
+              <p className="text-zinc-500 mt-2">
+                Years Experience
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-4xl font-black text-cyan-400">
+                100%
+              </h3>
+              <p className="text-zinc-500 mt-2">
+                Commitment
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}

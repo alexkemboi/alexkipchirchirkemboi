@@ -1,183 +1,250 @@
 "use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 import alex from "../images/alex.jpg";
-import Image from "next/image";
+
 const Navbar = () => {
-	const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-	const toggleMenu = () => {
-		setIsOpen(!isOpen);
-	};
-	const [darkMode, setDarkMode] = useState(false);
+  const navItems = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Portfolio", href: "#portfolio" },
+    { name: "Articles", href: "#articles" },
+    { name: "Contact", href: "#contact" },
+  ];
 
-	// useEffect(() => {
-	// 	const body = document.body;
-	// 	if (darkMode) {
-	// 		body.classList.add("dark-mode");
-	// 	} else {
-	// 		body.classList.remove("dark-mode");
-	// 	}
-	// }, [darkMode]);
+  return (
+    <>
+      {/* Floating Centered Navbar */}
+ <motion.nav
+  initial={{ y: -80, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 0.8 }}
+  className="fixed top-6 left-0 right-0 z-[9999] flex justify-center"
+>
+        <div
+          className="
+            flex
+            items-center
+            gap-8
+            rounded-full
+            border
+            border-white/10
+            bg-slate-900/70
+            backdrop-blur-2xl
+            shadow-2xl
+            shadow-cyan-500/10
+            px-6
+            py-3
+          "
+        >
+          {/* Logo */}
+          <Link
+            href="#home"
+            className="flex items-center gap-3"
+          >
+            <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-cyan-500/30">
+              <Image
+                src={alex}
+                alt="Alex Kemboi"
+                fill
+                className="object-cover"
+              />
+            </div>
 
-	const toggleDarkMode = () => {
-		setDarkMode((prevMode) => !prevMode);
-	};
+            <div className="hidden lg:block">
+              <h3 className="font-bold text-white text-sm">
+                Alex Kemboi
+              </h3>
+              <p className="text-xs text-zinc-400">
+                Full Stack Developer
+              </p>
+            </div>
+          </Link>
 
-	return (
-		<nav className="bg-sky-950">
-			<div className="max-w-full flex mx-auto px-2 sm:px-6 lg:px-8  border-0">
-				<div className="relative flex items-center justify-between h-16 w-full ">
-					<div className="absolute inset-y-0 left-0 flex flex-row  justify-between sm:hidden  w-full">
-						<button
-							type="button"
-							className="inline-flex items-center px-10 rounded-md text-gray-400 hover:text-white hover:bg-sky-950 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-							aria-controls="mobile-menu"
-							aria-expanded="false"
-						// onClick={toggleMenu}
-						>
-							<span className="sr-only">Open main menu</span>
-							<FontAwesomeIcon
-								icon={faBars}
-								className="h-6 w-6"
-							/>
-						</button>
-						<div className="relative m-2 flex h-12 w-full bg-white  p-2 items-end justify-end rounded-full dark:bg-sky-950 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 ml-auto">
-							<Image
-								alt=""
-								loading="lazy"
-								width="32"
-								height="32"
-								decoding="async"
-								data-nimg="1"
-								className="h-8 w-8 rounded-full dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0"
-								src={alex}
-							/>
-						</div>
-					</div>
-					<div className=" flex items-center justify-center sm:items-center sm:justify-center sm-border-0 md:border md:border-1 border-zinc-400 rounded-full m-auto p-2">
-						<div className="hidden sm:block sm:ml-6 ">
-							<div className="flex space-x-4">
-								<Link href="/">
-									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-										Home
-									</span>
-								</Link>
-								<Link href="/about">
-									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-										About
-									</span>
-								</Link>
-								<Link href="/portfolio">
-									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-										Portfolio
-									</span>
-								</Link>
-								<Link href="/skills">
-									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-										Skills
-									</span>
-								</Link>
-								<Link href="/contact">
-									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-										Contact Us
-									</span>
-								</Link>
-								<Link href="/articles">
-									<span className="text-zinc-400 hover:bg-sky-950 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-										Articles
-									</span>
-								</Link>
-							</div>
-						</div>
-					</div>
-				</div>
-				{/* <button
-					className="w-10  m-4"
-					onClick={toggleDarkMode}>
-					{darkMode ? (
-						<>
-							<FontAwesomeIcon
-								icon={faMoon}
-								className="w-6 h-6 m-2 text-zinc-400"
-							/>
-						</>
-					) : (
-						<>
-							<FontAwesomeIcon
-								icon={faSun}
-								className="w-6 h-6 m-2 text-zinc-400"
-							/>
-						</>
-					)}
-				</button> */}
-			</div>
-			{isOpen && (
-				<div
-					className="z-50 border-r border-b group-hover:opacity-100 border-gray-500 sm:hidden absolute left-0 top-0 w-1/2 bg-sky-950 transition-transform transform h-5/8 animate-slideIn delay-200"
-					id="mobile-menu">
-					<div className="border-b  border-gray-500 text-right flex flex-row justify-between w-auto h-1/2 z-10">
-						<div className="rounded-full overflow-hidden w-10 m-2 h-auto ">
-							<Image
-								src={alex}
-								alt="Description"
-							/>
-						</div>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="
+                  px-4
+                  py-2
+                  rounded-full
+                  text-sm
+                  font-medium
+                  text-zinc-400
+                  hover:text-white
+                  hover:bg-white/10
+                  transition-all
+                  duration-300
+                "
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
 
-						<button
-							type="button"
-							className="inline-flex  p-2 rounded-md text-gray-400 hover:text-white hover:bg-sky-950 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-							aria-controls="mobile-menu"
-							aria-expanded="false"
-							onClick={toggleMenu}>
-							<span className="sr-only">Toggle menu</span>
+          {/* CTA */}
+          <div className="hidden md:block">
+            <Link
+              href="#contact"
+              className="
+                rounded-full
+                bg-gradient-to-r
+                from-cyan-500
+                to-sky-600
+                px-5
+                py-2.5
+                text-sm
+                font-semibold
+                text-white
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-lg
+                hover:shadow-cyan-500/30
+              "
+            >
+              Hire Me
+            </Link>
+          </div>
 
-							<FontAwesomeIcon
-								icon={faTimes}
-								className="h-6 w-6"
-							/>
-						</button>
-					</div>
-					<div className="px-2 pt-2 pb-3 space-y-1 bg-sky-950">
-						<Link href="/">
-							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-								Home
-							</span>
-						</Link>
-						<Link href="/about">
-							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-								About
-							</span>
-						</Link>
-						<Link href="/portfolio">
-							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-								Portfolio
-							</span>
-						</Link>
-						<Link href="/skills">
-							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-								Skills
-							</span>
-						</Link>
-						<Link href="/contact">
-							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-								Contact Us
-							</span>
-						</Link>
-						<Link href="/articles">
-							<span className="text-zinc-400 hover:bg-sky-950 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-								Articles
-							</span>
-						</Link>
-					</div>
-				</div>
-			)}
-		</nav>
-	);
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="md:hidden text-white"
+          >
+            <FontAwesomeIcon
+              icon={faBars}
+              className="h-5 w-5"
+            />
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
+            />
+
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{
+                type: "spring",
+                damping: 20,
+              }}
+              className="
+                fixed
+                top-0
+                left-0
+                z-[9999]
+                h-screen
+                w-72
+                bg-slate-950/95
+                backdrop-blur-xl
+                border-r
+                border-white/10
+                p-6
+              "
+            >
+              <div className="flex items-center justify-between mb-10">
+                <div className="flex items-center gap-3">
+                  <div className="relative h-10 w-10 overflow-hidden rounded-full">
+                    <Image
+                      src={alex}
+                      alt="Alex Kemboi"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-white">
+                      Alex Kemboi
+                    </h3>
+                    <p className="text-xs text-zinc-400">
+                      Software Engineer
+                    </p>
+                  </div>
+                </div>
+
+                <button onClick={() => setIsOpen(false)}>
+                  <FontAwesomeIcon
+                    icon={faTimes}
+                    className="h-5 w-5 text-white"
+                  />
+                </button>
+              </div>
+
+              <div className="space-y-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="
+                      block
+                      rounded-xl
+                      px-4
+                      py-3
+                      text-zinc-300
+                      hover:bg-white/10
+                      hover:text-cyan-400
+                      transition-all
+                    "
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
+              <Link
+                href="#contact"
+                className="
+                  mt-8
+                  block
+                  text-center
+                  rounded-xl
+                  bg-gradient-to-r
+                  from-cyan-500
+                  to-sky-600
+                  px-5
+                  py-3
+                  text-white
+                  font-semibold
+                "
+              >
+                Hire Me
+              </Link>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
 };
 
 export default Navbar;

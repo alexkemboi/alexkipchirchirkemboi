@@ -1,295 +1,411 @@
-// "use client";
-
-// import { useState } from "react";
-// import { toast, ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-
-// const Contact = () => {
-// 	const [formData, setFormData] = useState({
-// 		name: "",
-// 		email: "",
-// 		message: "",
-// 	});
-
-// 	const handleChange = (e: { target: { name: any; value: any; }; }) => {
-// 		setFormData({ ...formData, [e.target.name]: e.target.value });
-// 	};
-
-// 	const handleSubmit = async (e: { preventDefault: () => void; }) => {
-// 		e.preventDefault();
-
-// 		try {
-// 			const response = await fetch("https://kemboialex.netlify.app/api", {
-// 				method: "POST",
-// 				headers: {
-// 					"Content-Type": "application/json",
-// 				},
-// 				body: JSON.stringify(formData),
-// 			});
-
-// 			if (response.ok) {
-// 				toast.info("Message sent successfully!");
-// 				toast.success("Message sent successfully!");
-// 				setFormData({ name: "", email: "", message: "" });
-// 			} else {
-// 				console.log(formData)
-// 				toast.error("Message Not sent successfully!");
-// 				const data = await response.json();
-// 				toast.error(data.error || "Failed to send message. Please try again.");
-// 			}
-// 		} catch (error) {
-// 			toast.error("An error occurred. Please try again.");
-// 		}
-// 	};
-
-// 	return (
-// 		<section id="contact" className="bg-sky-950 px-10 animate-fadeIn pb-5">
-// 			<div className="card border border-gray-700 rounded">
-// 				<div className="card-header text-zinc-600">
-// 					<h1 className="text-center text-3xl font-bold text-teal-500">
-// 						Contact me for your next project
-// 					</h1>
-// 				</div>
-// 				<div className="card-body px-10 py-2">
-// 					<form id="contactForm" onSubmit={handleSubmit}>
-// 						<div className="mb-4">
-// 							<label htmlFor="name" className="text-zinc-600 block">
-// 								Name
-// 							</label>
-// 							<input
-// 								type="text"
-// 								className="w-full border text-teal-500 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
-// 								id="name"
-// 								name="name"
-// 								value={formData.name}
-// 								onChange={handleChange}
-// 								required
-// 							/>
-// 						</div>
-// 						<div className="mb-4">
-// 							<label htmlFor="email" className="text-zinc-600 block">
-// 								Email address
-// 							</label>
-// 							<input
-// 								type="email"
-// 								className="w-full border text-teal-500 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
-// 								id="email"
-// 								name="email"
-// 								value={formData.email}
-// 								onChange={handleChange}
-// 								required
-// 							/>
-// 						</div>
-// 						<div className="mb-4">
-// 							<label htmlFor="message" className="text-zinc-600 block">
-// 								Message
-// 							</label>
-// 							<textarea
-// 								className="w-full border text-teal-500 border-gray-100 bg-sky-950 text-zinc-600 rounded border-gray-700 bg-sky-950 py-2 px-3"
-// 								id="message"
-// 								name="message"
-// 								rows={5}
-// 								value={formData.message}
-// 								onChange={handleChange}
-// 								required></textarea>
-// 						</div>
-// 						<button
-// 							type="submit"
-// 							className="rounded border border-gray-700 bg-sky-950 text-teal-500 py-2 px-4">
-// 							Send Message
-// 						</button>
-// 					</form>
-// 					<ToastContainer />
-// 				</div>
-// 			</div>
-// 		</section>
-// 	);
-// };
-
-// export default Contact;
-
-
-
-
-
-
-
-
-
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { Send, Mail, Phone, MapPin, Loader2 } from "lucide-react";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-const ProjectRequirements = () => {
-	const [formData, setFormData] = useState({
-		projectName: "test",
-		contactPerson: "test",
-		email: "test",
-		description: "test",
-		budget: "test",
-		deadline: "test",
-		goals: "test",
-	});
 
-	const handleChange = (e: { target: { name: any; value: any; }; }) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-	};
+export default function Contact() {
+  const [loading, setLoading] = useState(false);
 
-	const handleSubmit = async (e: { preventDefault: () => void; }) => {
-		e.preventDefault();
+  const [formData, setFormData] = useState({
+    projectName: "",
+    contactPerson: "",
+    email: "",
+    description: "",
+    budget: "",
+    deadline: "",
+    goals: "",
+  });
 
-		try {
-			const response = await fetch("http://localhost:3000/api/sendemail", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-			if (response.ok) {
-				toast.success("Requirements submitted successfully!");
-				setFormData({
-					projectName: "",
-					contactPerson: "",
-					email: "",
-					description: "",
-					budget: "",
-					deadline: "",
-					goals: "",
-				});
-			} else {
-				const data = await response.json();
-				toast.error(data.error || "Failed to submit requirements. Please try again.");
-			}
-		} catch (error) {
-			toast.error("An error occurred. Please try again.");
-		}
-	};
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
+    e.preventDefault();
 
-	return (
-		<section id="project-requirements" className="bg-sky-950 px-10 py-5">
-			<div className="card border border-gray-300  rounded-lg shadow-lg">
-				<div className="card-header">
-					<h1 className="text-center text-2xl font-bold text-teal-500">
-						SUBMIT YOUR PROJECT REQUIREMENTS
-					</h1>
-				</div>
-				<div className="card-body px-8 py-6">
-					<form id="requirementsForm" onSubmit={handleSubmit}>
-						<div className="mb-4">
-							<label htmlFor="projectName" className="text-white block">
-								Project Name
-							</label>
-							<input
-								type="text"
-								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
-								id="projectName"
-								name="projectName"
-								value={formData.projectName}
-								onChange={handleChange}
-								required
-							/>
-						</div>
-						<div className="mb-4">
-							<label htmlFor="contactPerson" className="text-white block">
-								Contact Person
-							</label>
-							<input
-								type="text"
-								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
-								id="contactPerson"
-								name="contactPerson"
-								value={formData.contactPerson}
-								onChange={handleChange}
-								required
-							/>
-						</div>
-						<div className="mb-4">
-							<label htmlFor="email" className="text-white block">
-								Email Address
-							</label>
-							<input
-								type="email"
-								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
-								id="email"
-								name="email"
-								value={formData.email}
-								onChange={handleChange}
-								required
-							/>
-						</div>
-						<div className="mb-4">
-							<label htmlFor="description" className="text-white block">
-								Project Description
-							</label>
-							<textarea
-								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
-								id="description"
-								name="description"
-								rows={4}
-								value={formData.description}
-								onChange={handleChange}
-								required></textarea>
-						</div>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-							<div>
-								<label htmlFor="budget" className="text-white block">
-									Estimated Budget ($)
-								</label>
-								<input
-									type="number"
-									className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
-									id="budget"
-									name="budget"
-									value={formData.budget}
-									onChange={handleChange}
-									required
-								/>
-							</div>
-							<div>
-								<label htmlFor="deadline" className="text-white block">
-									Deadline
-								</label>
-								<input
-									type="date"
-									className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
-									id="deadline"
-									name="deadline"
-									value={formData.deadline}
-									onChange={handleChange}
-									required
-								/>
-							</div>
-						</div>
-						<div className="mb-4">
-							<label htmlFor="goals" className="text-white block">
-								Project Goals
-							</label>
-							<textarea
-								className="w-full border text-teal-500 border-gray-100 bg-sky-950 rounded-lg px-3 py-2"
-								id="goals"
-								name="goals"
-								rows={3}
-								value={formData.goals}
-								onChange={handleChange}
-								required></textarea>
-						</div>
-						<div className="text-center">
-							<button
-								type="submit"
-								className="bg-sky-950 border border-gray-100  text-white rounded-lg px-6 py-2 hover:bg-sky-500">
-								Submit Requirements
-							</button>
-						</div>
-					</form>
-					<ToastContainer />
-				</div>
-			</div>
-		</section>
-	);
-};
+    setLoading(true);
 
-export default ProjectRequirements;
+    try {
+      const response = await fetch(
+        "/api/sendemail",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        toast.success(
+          "Project requirements submitted successfully."
+        );
+
+        setFormData({
+          projectName: "",
+          contactPerson: "",
+          email: "",
+          description: "",
+          budget: "",
+          deadline: "",
+          goals: "",
+        });
+      } else {
+        toast.error(
+          "Unable to submit your request."
+        );
+      }
+    } catch (error) {
+      toast.error(
+        "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section
+      id="contact"
+      className="py-24 px-4 md:px-8 lg:px-12"
+    >
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span
+            className="
+              inline-flex
+              rounded-full
+              border
+              border-cyan-500/30
+              bg-cyan-500/10
+              px-4
+              py-2
+              text-sm
+              text-cyan-400
+            "
+          >
+            Let's Work Together
+          </span>
+
+          <h2 className="mt-6 text-5xl font-black text-white">
+            Start Your
+            <span className="block bg-gradient-to-r from-cyan-400 to-sky-500 bg-clip-text text-transparent">
+              Next Project
+            </span>
+          </h2>
+
+          <p className="mt-6 max-w-3xl mx-auto text-lg text-zinc-400">
+            Tell me about your project and I'll
+            help turn your idea into a scalable,
+            modern solution.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-3 gap-10">
+
+          {/* Contact Information */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -40,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{ once: true }}
+            className="
+              rounded-3xl
+              border
+              border-white/10
+              bg-white/5
+              backdrop-blur-xl
+              p-8
+            "
+          >
+            <h3 className="text-2xl font-bold text-white">
+              Contact Information
+            </h3>
+
+            <p className="mt-4 text-zinc-400">
+              Available for freelance,
+              consulting, enterprise solutions,
+              and long-term collaborations.
+            </p>
+
+            <div className="space-y-6 mt-10">
+
+              <div className="flex gap-4">
+                <Mail className="text-cyan-400" />
+                <div>
+                  <h4 className="text-white font-semibold">
+                    Email
+                  </h4>
+                  <p className="text-zinc-400">
+                    alex@example.com
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <Phone className="text-cyan-400" />
+                <div>
+                  <h4 className="text-white font-semibold">
+                    Phone
+                  </h4>
+                  <p className="text-zinc-400">
+                    +254 xxx xxx xxx
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <MapPin className="text-cyan-400" />
+                <div>
+                  <h4 className="text-white font-semibold">
+                    Location
+                  </h4>
+                  <p className="text-zinc-400">
+                    Nairobi, Kenya
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+
+          {/* Form */}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: 40,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{ once: true }}
+            className="
+              lg:col-span-2
+              rounded-3xl
+              border
+              border-white/10
+              bg-white/5
+              backdrop-blur-xl
+              p-8
+            "
+          >
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
+            >
+              <div className="grid md:grid-cols-2 gap-6">
+                <input
+                  type="text"
+                  name="projectName"
+                  placeholder="Project Name"
+                  value={formData.projectName}
+                  onChange={handleChange}
+                  required
+                  className="
+                    rounded-xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    px-4
+                    py-3
+                    text-white
+                    outline-none
+                    focus:border-cyan-500
+                  "
+                />
+
+                <input
+                  type="text"
+                  name="contactPerson"
+                  placeholder="Contact Person"
+                  value={formData.contactPerson}
+                  onChange={handleChange}
+                  required
+                  className="
+                    rounded-xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    px-4
+                    py-3
+                    text-white
+                    outline-none
+                    focus:border-cyan-500
+                  "
+                />
+              </div>
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="
+                  w-full
+                  rounded-xl
+                  border
+                  border-white/10
+                  bg-white/5
+                  px-4
+                  py-3
+                  text-white
+                  outline-none
+                  focus:border-cyan-500
+                "
+              />
+
+              <textarea
+                rows={5}
+                name="description"
+                placeholder="Project Description"
+                value={formData.description}
+                onChange={handleChange}
+                required
+                className="
+                  w-full
+                  rounded-xl
+                  border
+                  border-white/10
+                  bg-white/5
+                  px-4
+                  py-3
+                  text-white
+                  outline-none
+                  focus:border-cyan-500
+                "
+              />
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <input
+                  type="text"
+                  name="budget"
+                  placeholder="Budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  className="
+                    rounded-xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    px-4
+                    py-3
+                    text-white
+                  "
+                />
+
+                <input
+                  type="date"
+                  name="deadline"
+                  value={formData.deadline}
+                  onChange={handleChange}
+                  className="
+                    rounded-xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    px-4
+                    py-3
+                    text-white
+                  "
+                />
+              </div>
+
+              <textarea
+                rows={4}
+                name="goals"
+                placeholder="Project Goals"
+                value={formData.goals}
+                onChange={handleChange}
+                className="
+                  w-full
+                  rounded-xl
+                  border
+                  border-white/10
+                  bg-white/5
+                  px-4
+                  py-3
+                  text-white
+                "
+              />
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="
+                  flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-xl
+                  bg-gradient-to-r
+                  from-cyan-500
+                  to-sky-600
+                  px-8
+                  py-4
+                  font-semibold
+                  text-white
+                  transition-all
+                  hover:scale-105
+                  disabled:opacity-50
+                "
+              >
+                {loading ? (
+                  <>
+                    <Loader2
+                      size={18}
+                      className="animate-spin"
+                    />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Submit Project
+                    <Send size={18} />
+                  </>
+                )}
+              </button>
+            </form>
+          </motion.div>
+
+        </div>
+
+        <ToastContainer />
+      </div>
+    </section>
+  );
+}

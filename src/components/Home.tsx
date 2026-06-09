@@ -1,99 +1,141 @@
 "use client";
-import { useEffect } from "react";
+
 import Image from "next/image";
-import alex from "../images/alex.jpg";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import alex from "../images/alex.jpg";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faLinkedin,
-	faTwitter,
-	faGithub
+  faLinkedin,
+  faTwitter,
+  faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 
-const Home = () => {
-	const downloadCV = () => { };
-	useEffect(() => { }, []);
-	return (
-		<section
-			id="home"
-			className="bg-sky-950 animate-fadeIn ">
-			<div className="card ">
-				<div className="card-content">
-					<div className="flex flex-col lg:flex lg:flex-col m-10">
-						<div className="bg-sky-950">
-							<div className="rounded-full overflow-hidden w-40 h-40 m-4">
-								<Image
-									src={alex}
-									alt="Description"
-								/>
-							</div>
-						</div>
+export default function Home() {
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
+      {/* Background Effects */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-20 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 h-72 w-72 rounded-full bg-sky-500/20 blur-3xl animate-pulse" />
+      </div>
 
-						<div className="bg-sky-950 overflow-hidden ">
-							<div className="text-left bg-sky-950 transform transition-transform ease-in-out duration-500 ">
-								<p className="text-zinc-400 text-2xl lg:text-2xl sm:text-5xl xl:text-3xl font-bold mb-2 lg:w-2/3">
-									Full stack Software developer, in Nairobi, Kenya. I am
-									creative, a problem solver, and a critical thinker.
-								</p>
-								<p className="w-2/3 text-sm text-zinc-600 dark:text-zinc-400">
-									I&apos;m a software engineer with a strong emphasis on web
-									development. My skillset extends to encompass a wide array of
-									technologies. This extensive range of expertise enables me to
-									create robust and versatile applications with confidence.
-								</p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-								<button
-									type="button"
-									className="btn border border-zinc-400  shadow-5xl rounded py-1 px-10 text-teal-400 my-4 font-bold"
-									onClick={downloadCV}>
-									<a href={`/resume`}>
-										<span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-										<span className="relative z-10 text-teal-500">
-											Resume &gt;
-										</span>
-									</a>
+          {/* LEFT CONTENT */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="order-2 lg:order-1"
+          >
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-400"
+            >
+              Full Stack Software Engineer
+            </motion.span>
 
-								</button>
+            <h1 className="mt-8 text-5xl md:text-6xl xl:text-7xl font-black leading-tight tracking-tight">
+              Building
+              <span className="block bg-gradient-to-r from-cyan-400 to-sky-500 bg-clip-text text-transparent">
+                Digital Experiences
+              </span>
+            </h1>
 
-								<div className="flex flex-row">
-									<Link
-										href="https://www.linkedin.com/in/alex-kemboi-9642a3166"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-dark">
-										<FontAwesomeIcon
-											icon={faLinkedin}
-											className="w-6 h-6 m-2 text-zinc-400"
-										/>
-									</Link>
-									<Link
-										href="https://www.twitter.com/alexkemboi97"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-dark">
-										<FontAwesomeIcon
-											icon={faTwitter}
-											className="w-6 h-6 m-2 text-zinc-400"
-										/>
-									</Link>
-									<Link
-										href="https://www.github.com/alexkemboi"
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-dark">
-										<FontAwesomeIcon
-											icon={faGithub}
-											className="w-6 h-6 m-2 text-zinc-400"
-										/>
-									</Link>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	);
-};
+            <p className="mt-8 text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed">
+              I'm Alex Kemboi, a Full Stack Software Developer based in
+              Nairobi, Kenya. I specialize in building scalable web
+              applications, enterprise systems, and modern digital solutions
+              that solve real-world business problems.
+            </p>
 
-export default Home;
+            <div className="flex flex-wrap gap-4 mt-10">
+              <Link
+                href="/resume"
+                className="group rounded-xl bg-gradient-to-r from-cyan-500 to-sky-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/30"
+              >
+                View Resume →
+              </Link>
+
+              <Link
+                href="#portfolio"
+                className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm px-8 py-4 font-semibold text-zinc-300 hover:bg-white/10 transition"
+              >
+                View Projects
+              </Link>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-4 mt-10">
+              {[
+                {
+                  icon: faLinkedin,
+                  url: "https://www.linkedin.com/in/alex-kemboi-9642a3166",
+                },
+                {
+                  icon: faTwitter,
+                  url: "https://www.twitter.com/alexkemboi97",
+                },
+                {
+                  icon: faGithub,
+                  url: "https://www.github.com/alexkemboi",
+                },
+              ].map((social, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{
+                    y: -5,
+                    scale: 1.1,
+                  }}
+                >
+                  <Link
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm text-zinc-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all"
+                  >
+                    <FontAwesomeIcon icon={social.icon} />
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* RIGHT IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+            }}
+            transition={{ duration: 0.8 }}
+            className="order-1 lg:order-2 flex justify-center"
+          >
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-cyan-500 to-sky-500 blur-3xl opacity-30" />
+
+              <div className="relative h-80 w-80 md:h-96 md:w-96 overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl">
+                <Image
+                  src={alex}
+                  alt="Alex Kemboi"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,132 +1,244 @@
 "use client";
-import { useEffect } from "react";
-import Image from "next/image";
-import alex from "../images/alex.jpg";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faLinkedin,
-	faTwitter,
-	faGithub
-} from "@fortawesome/free-brands-svg-icons";
+import { Calendar, ArrowRight } from "lucide-react";
 
-const Articles = () => {
-	const articlesData = [
-		{
-			id: 1,
-			title: "Introduction to Git Version Control",
-			slug: "introduction-to-git-version-control",
-			date: "January 10, 2023",
-			excerpt:
-				"Learn the basics of Git version control, including how to initialize a repository, make commits, and collaborate with others on your projects."
-		},
-		{
-			id: 2,
-			title: "Demystifying DevOps: A Comprehensive Guide",
-			slug: "demystifying-devops-comprehensive-guide",
-			date: "February 15, 2023",
-			excerpt:
-				"Explore the key principles and practices of DevOps, bridging the gap between development and operations to enhance collaboration and productivity."
-		},
-		{
-			id: 3,
-			title:
-				"Continuous Integration and Continuous Deployment (CI/CD) Explained",
-			slug: "ci-cd-explained",
-			date: "March 20, 2023",
-			excerpt:
-				"Understand the concepts behind CI/CD and how it streamlines the software development process by automating testing, integration, and deployment."
-		},
-		{
-			id: 4,
-			title: "Comprehensive Guide to Software Testing Strategies",
-			slug: "comprehensive-guide-to-software-testing",
-			date: "April 25, 2023",
-			excerpt:
-				"Explore various software testing strategies, including unit testing, integration testing, and end-to-end testing, to ensure the quality of your applications."
-		}
-	];
-	useEffect(() => {
-		// Add any additional logic you may need
-	}, []);
+export default function Articles() {
+  const articlesData = [
+    {
+      id: 1,
+      title: "Introduction to Git Version Control",
+      slug: "introduction-to-git-version-control",
+      date: "January 10, 2023",
+      excerpt:
+        "Learn the fundamentals of Git version control, repository management, commits, branching, and collaboration workflows.",
+      category: "DevOps",
+    },
+    {
+      id: 2,
+      title: "Demystifying DevOps: A Comprehensive Guide",
+      slug: "demystifying-devops-comprehensive-guide",
+      date: "February 15, 2023",
+      excerpt:
+        "Explore DevOps principles, culture, automation, CI/CD pipelines, and best practices for modern software teams.",
+      category: "DevOps",
+    },
+    {
+      id: 3,
+      title: "Continuous Integration & Deployment Explained",
+      slug: "ci-cd-explained",
+      date: "March 20, 2023",
+      excerpt:
+        "Understand how CI/CD pipelines improve software quality, delivery speed, and deployment confidence.",
+      category: "Engineering",
+    },
+    {
+      id: 4,
+      title: "Software Testing Strategies",
+      slug: "comprehensive-guide-to-software-testing",
+      date: "April 25, 2023",
+      excerpt:
+        "Learn effective testing methodologies including unit testing, integration testing, and end-to-end automation.",
+      category: "Quality Assurance",
+    },
+  ];
 
-	return (
-		<main className="flex-auto mb-10 animate-fadeIn">
-			<div className="px-10">
-				<div className="mx-auto w-full">
-					<div className="relative ">
-						<div className="mx-auto">
-							<header className="mx-w-2xl group group-hover:opacity-100">
-								<h1 className="font-bold text-3xl lg:text-2xl sm:text-5xl xl:text-3xl text-center text-teal-400">
-									Articles
-								</h1>
-								<h4 className="text-2xl font-bold tracking-tight text-zinc-800 sm:text-2xl dark:text-zinc-100"></h4>
-								<p className=" text-base text-zinc-600 dark:text-zinc-400">
-									Writing on software design, company building, and the
-									aerospace industry. All of my long-form thoughts on
-									programming, leadership, product design, and more, collected
-									in chronological order.
-								</p>
-							</header>
-							<div className="mt-4  ">
-								<div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-									<div className="flex  flex-col space-y-1">
-										{articlesData.map((article) => (
-											<article
-												key={article.id}
-												className="md:grid md:grid-cols-4 md:items-baseline ">
-												<div className="md:col-span-3 group  relative flex flex-col items-start mt-10">
-													<h2 className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-														<div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50"></div>
-														<a href={`/articles/${article.slug}`}>
-															<span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-															<span className="relative z-10 text-teal-500">
-																{article.title}
-															</span>
-														</a>
-													</h2>
-													<time className="md:hidden relative z-10 order-first mb-3 flex items-center text-sm text-teal-500 dark:text-teal-500 pl-3.5">
-														<span
-															className="absolute inset-y-0 left-0 flex items-center"
-															aria-hidden="true">
-															<span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"></span>
-														</span>
-														{article.date}
-													</time>
-													<p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-														{article.excerpt}
-													</p>
-													<div
-														aria-hidden="true"
-														className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">
-														Read article
-														<svg
-															viewBox="0 0 16 16"
-															fill="none"
-															aria-hidden="true"
-															className="ml-1 h-4 w-4 stroke-current">
-															<path
-																d="M6.75 5.75 9.25 8l-2.5 2.25"
-																strokeWidth="1.5"
-																strokeLinecap="round"
-																strokeLinejoin="round"></path>
-														</svg>
-													</div>
-												</div>
-												<time className="mt-1 hidden md:block relative z-10 order-first mb-3  items-center text-sm text-zinc-400 dark:text-zinc-500">
-													{article.date}
-												</time>
-											</article>
-										))}
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-	);
-};
+  return (
+    <section
+      id="articles"
+      className="py-24 px-4 md:px-8 lg:px-12"
+    >
+      <div className="max-w-7xl mx-auto">
 
-export default Articles;
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span
+            className="
+              inline-flex
+              rounded-full
+              border
+              border-cyan-500/30
+              bg-cyan-500/10
+              px-4
+              py-2
+              text-sm
+              text-cyan-400
+            "
+          >
+            Knowledge Hub
+          </span>
+
+          <h2 className="mt-6 text-5xl font-black text-white">
+            Latest
+            <span className="block bg-gradient-to-r from-cyan-400 to-sky-500 bg-clip-text text-transparent">
+              Articles
+            </span>
+          </h2>
+
+          <p className="mt-6 max-w-3xl mx-auto text-lg text-zinc-400">
+            Thoughts on software engineering, cloud computing,
+            DevOps, architecture, leadership, and modern technology.
+          </p>
+        </motion.div>
+
+        {/* Articles Grid */}
+        <div className="grid gap-8 md:grid-cols-2">
+          {articlesData.map((article, index) => (
+            <motion.article
+              key={article.id}
+              initial={{
+                opacity: 0,
+                y: 50,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{ once: true }}
+              transition={{
+                delay: index * 0.1,
+              }}
+              whileHover={{
+                y: -8,
+              }}
+              className="
+                group
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/5
+                backdrop-blur-xl
+                p-8
+                hover:border-cyan-500/30
+                hover:shadow-xl
+                hover:shadow-cyan-500/10
+                transition-all
+                duration-300
+              "
+            >
+              <div className="flex items-center justify-between mb-6">
+                <span
+                  className="
+                    rounded-full
+                    border
+                    border-cyan-500/20
+                    bg-cyan-500/10
+                    px-3
+                    py-1
+                    text-xs
+                    text-cyan-400
+                  "
+                >
+                  {article.category}
+                </span>
+
+                <div className="flex items-center gap-2 text-zinc-500 text-sm">
+                  <Calendar size={14} />
+                  {article.date}
+                </div>
+              </div>
+
+              <h3
+                className="
+                  text-2xl
+                  font-bold
+                  text-white
+                  group-hover:text-cyan-400
+                  transition-colors
+                "
+              >
+                {article.title}
+              </h3>
+
+              <p className="mt-4 text-zinc-400 leading-relaxed">
+                {article.excerpt}
+              </p>
+
+              <Link
+                href={`/articles/${article.slug}`}
+                className="
+                  mt-6
+                  inline-flex
+                  items-center
+                  gap-2
+                  text-cyan-400
+                  font-medium
+                  hover:text-cyan-300
+                "
+              >
+                Read Article
+                <ArrowRight size={16} />
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{ once: true }}
+          className="
+            mt-20
+            rounded-3xl
+            border
+            border-white/10
+            bg-white/5
+            backdrop-blur-xl
+            p-10
+            text-center
+          "
+        >
+          <h3 className="text-3xl font-black text-white">
+            Stay Updated
+          </h3>
+
+          <p className="mt-4 text-zinc-400 max-w-2xl mx-auto">
+            Follow my journey as I share insights on software
+            engineering, cloud technologies, enterprise systems,
+            and digital innovation.
+          </p>
+
+          <Link
+            href="/articles"
+            className="
+              inline-flex
+              items-center
+              gap-2
+              mt-8
+              rounded-xl
+              bg-gradient-to-r
+              from-cyan-500
+              to-sky-600
+              px-6
+              py-3
+              font-semibold
+              text-white
+              hover:scale-105
+              transition-all
+            "
+          >
+            View All Articles
+            <ArrowRight size={18} />
+          </Link>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}

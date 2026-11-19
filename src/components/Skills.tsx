@@ -1,190 +1,136 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {
-  faHtml5,
-  faCss3Alt,
-  faJs,
-  faBootstrap,
-  faReact,
-  faJava,
-  faAws,
-  faNodeJs,
-  faAngular,
-  faCuttlefish,
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons";
+  BrainCircuit,
+  ChartNoAxesCombined,
+  CloudCog,
+  MonitorSmartphone,
+  ServerCog,
+  Workflow,
+  type LucideIcon,
+} from "lucide-react";
 
-import {
-  faCloud,
-  faCode,
-  faDatabase,
-} from "@fortawesome/free-solid-svg-icons";
+import { capabilities } from "@/lib/content";
+import SectionHeading from "./ui/SectionHeading";
+import Reveal from "./ui/Reveal";
+import Integrations from "./Integrations";
+
+const icons: Record<string, LucideIcon> = {
+  "Frontend Development": MonitorSmartphone,
+  "Backend Engineering": ServerCog,
+  "Data Analysis & Visualisation": ChartNoAxesCombined,
+  "Systems Integration": Workflow,
+  "Cloud & DevOps": CloudCog,
+  "AI Product Development": BrainCircuit,
+};
+
+/*
+ * Bento layout on a 6-column grid:
+ *   01 wide (4) | 02 (2)
+ *   03 (2) | 04 (2) | 05 (2)
+ *   06 full width, horizontal
+ */
+const spans = [
+  "lg:col-span-4",
+  "lg:col-span-2",
+  "lg:col-span-2",
+  "lg:col-span-2",
+  "lg:col-span-2",
+  "lg:col-span-6",
+];
 
 export default function Skills() {
-  const skills = [
-    { name: "HTML5", icon: faHtml5, color: "text-orange-500", progress: 95 },
-    { name: "CSS3", icon: faCss3Alt, color: "text-blue-500", progress: 92 },
-    { name: "JavaScript", icon: faJs, color: "text-yellow-400", progress: 95 },
-    { name: "Bootstrap", icon: faBootstrap, color: "text-purple-500", progress: 90 },
-    { name: "React", icon: faReact, color: "text-cyan-400", progress: 95 },
-    { name: "MongoDB", icon: faDatabase, color: "text-green-500", progress: 85 },
-    { name: "Java", icon: faJava, color: "text-red-500", progress: 90 },
-    { name: "AWS", icon: faAws, color: "text-orange-400", progress: 80 },
-    { name: "C", icon: faCode, color: "text-blue-400", progress: 85 },
-    { name: "NodeJS", icon: faNodeJs, color: "text-green-500", progress: 90 },
-    { name: "MySQL", icon: faDatabase, color: "text-sky-500", progress: 92 },
-    { name: "Angular", icon: faAngular, color: "text-red-600", progress: 88 },
-    { name: "Azure", icon: faCloud, color: "text-cyan-500", progress: 85 },
-    { name: "C#", icon: faCuttlefish, color: "text-purple-500", progress: 90 },
-    { name: "ASP.NET", icon: faCode, color: "text-violet-500", progress: 92 },
-    { name: "Git & GitHub", icon: faGithub, color: "text-white", progress: 95 },
-  ];
-
   return (
     <section
       id="skills"
-      className="py-24 px-4 md:px-8 lg:px-12"
+      aria-labelledby="skills-title"
+      className="on-dark bg-navy py-20 text-white md:py-28"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="container-site">
+        <SectionHeading
+          id="skills-title"
+          tone="dark"
+          number="03"
+          label="Skills"
+          title={
+            <>
+              Skills &amp; <span className="text-amber">expertise.</span>
+            </>
+          }
+          intro="I work across the whole stack: the interface, the service, the data, the integration, the deployment and now the AI layer."
+        />
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="inline-flex rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 text-sm text-cyan-400">
-            Technical Expertise
-          </span>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
+          {capabilities.map((cap, i) => {
+            const Icon = icons[cap.title] ?? Workflow;
+            const wide = i === 0;
+            const last = i === capabilities.length - 1;
 
-          <h2 className="mt-6 text-4xl md:text-5xl font-black text-white">
-            Skills &
-            <span className="block bg-gradient-to-r from-cyan-400 to-sky-500 bg-clip-text text-transparent">
-              Technologies
-            </span>
-          </h2>
+            return (
+              <Reveal
+                as="li"
+                key={cap.title}
+                delay={(i % 3) * 0.07}
+                className={`group relative flex flex-col overflow-hidden rounded-[22px] border p-6 transition-[border-color,background-color,transform] duration-300 motion-safe:hover:-translate-y-1 md:p-8 ${
+                  spans[i] ?? "lg:col-span-2"
+                } ${wide || last ? "sm:col-span-2" : ""} ${
+                  last
+                    ? "border-amber/40 bg-amber/[0.07] hover:border-amber lg:flex-row lg:items-center lg:gap-10"
+                    : "border-white/10 bg-white/[0.04] hover:border-white/25 hover:bg-white/[0.07]"
+                }`}
+              >
+                <div className={`relative flex flex-col ${last ? "lg:flex-1" : "flex-1"}`}>
+                  <div className="flex items-center justify-between gap-4">
+                    <span
+                      aria-hidden="true"
+                      className="flex size-12 items-center justify-center rounded-2xl bg-amber/10 text-amber ring-1 ring-amber/25 transition-colors duration-300 group-hover:bg-amber group-hover:text-ink"
+                    >
+                      <Icon className="size-6" strokeWidth={1.75} />
+                    </span>
+                    <span
+                      className={`rounded-full border border-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-steel ${
+                        last ? "lg:hidden" : ""
+                      }`}
+                    >
+                      {cap.tools.length} tools
+                    </span>
+                  </div>
 
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-zinc-400 leading-relaxed">
-            Over the years I have worked across enterprise software,
-            cloud platforms, modern web technologies, databases,
-            DevOps tools, and scalable application architectures.
-          </p>
-        </motion.div>
+                  <h3
+                    className={`mt-6 font-display font-extrabold uppercase leading-tight ${
+                      wide ? "text-2xl md:text-[28px]" : "text-xl md:text-[22px]"
+                    }`}
+                  >
+                    {cap.title}
+                  </h3>
+                  <p
+                    className={`mt-3 leading-relaxed text-mist ${
+                      wide ? "max-w-xl text-base md:text-[17px]" : "text-[15px]"
+                    }`}
+                  >
+                    {cap.summary}
+                  </p>
+                </div>
 
-        {/* Skills Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.4,
-                delay: index * 0.03,
-              }}
-              whileHover={{
-                y: -8,
-                scale: 1.02,
-              }}
-              className="
-                rounded-3xl
-                border
-                border-white/10
-                bg-white/5
-                backdrop-blur-xl
-                p-6
-                shadow-lg
-                hover:border-cyan-500/30
-                transition-all
-              "
-            >
-              <div className="flex items-center justify-between mb-5">
-                <FontAwesomeIcon
-                  icon={skill.icon}
-                  className={`text-4xl ${skill.color}`}
-                />
+                <ul
+                  className={`relative flex flex-wrap gap-2 ${
+                    last ? "mt-6 lg:mt-0 lg:max-w-md lg:justify-end" : "mt-auto pt-7"
+                  }`}
+                  aria-label={`${cap.title} tools`}
+                >
+                  {cap.tools.map((tool) => (
+                    <li
+                      key={tool}
+                      className="rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs font-semibold text-white/90 transition-colors duration-200 group-hover:border-white/25"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            );
+          })}
+        </ul>
 
-                <span className="text-cyan-400 font-bold">
-                  {skill.progress}%
-                </span>
-              </div>
-
-              <h3 className="text-white font-semibold text-lg">
-                {skill.name}
-              </h3>
-
-              <div className="mt-5 h-2 rounded-full bg-slate-800 overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{
-                    width: `${skill.progress}%`,
-                  }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 1.2,
-                    ease: "easeOut",
-                  }}
-                  className="
-                    h-full
-                    rounded-full
-                    bg-gradient-to-r
-                    from-cyan-500
-                    to-sky-500
-                  "
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Bottom Stats */}
-        <div className="mt-20 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-
-            <div>
-              <h3 className="text-4xl font-black text-cyan-400">
-                16+
-              </h3>
-              <p className="text-zinc-500 mt-2">
-                Technologies
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-black text-cyan-400">
-                50+
-              </h3>
-              <p className="text-zinc-500 mt-2">
-                Projects
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-black text-cyan-400">
-                5+
-              </h3>
-              <p className="text-zinc-500 mt-2">
-                Years Experience
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-black text-cyan-400">
-                100%
-              </h3>
-              <p className="text-zinc-500 mt-2">
-                Commitment
-              </p>
-            </div>
-
-          </div>
-        </div>
-
+        <Integrations />
       </div>
     </section>
   );

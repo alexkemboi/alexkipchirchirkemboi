@@ -1,15 +1,16 @@
-import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import type { Metadata } from "next";
 import Portfolio from "@/components/Portfolio";
 
-const page = () => {
-	return (
-		<div className="flex flex-col min-h-screen bg-sky-950">
-			<main className="flex-1 bg-sky-950">
-				<Portfolio />
-			</main>
-		</div>
-	);
+export const metadata: Metadata = {
+  title: "Selected Work",
+  description:
+    "Projects built by Alex Kemboi across business platforms, banking, e-commerce, health and education.",
+  alternates: { canonical: "/portfolio" },
 };
-export default page;
+
+export default function Page() {
+  return <Portfolio />;
+}
+
+/** Re-read live project titles and descriptions every 6 hours. */
+export const revalidate = 21600;

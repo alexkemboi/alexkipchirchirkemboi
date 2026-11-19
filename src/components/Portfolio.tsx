@@ -1,270 +1,136 @@
-"use client";
+import { ArrowUpRight } from "lucide-react";
 
-import { motion } from "framer-motion";
-import {
-  Globe,
-  ExternalLink,
-  Code2,
-  Laptop,
-} from "lucide-react";
+import { flagship, projects } from "@/lib/content";
+import { getLiveMeta, siteSlug } from "@/lib/live-sites";
+import SectionHeading from "./ui/SectionHeading";
+import Reveal from "./ui/Reveal";
+import LivePreview from "./ui/LivePreview";
 
-export default function Portfolio() {
-  const projects = [
-    {
-      id: 1,
-      title: "Mediconnect",
-      description:
-        "A modern healthcare platform connecting patients, healthcare providers, and digital health services.",
-      website: "https://mediconnectapp.netlify.app",
-      icon: Globe,
-      category: "Healthcare",
-    },
-    {
-      id: 2,
-      title: "Africommerce",
-      description:
-        "An e-commerce ecosystem designed to connect businesses, customers, and digital marketplaces across Africa.",
-      website: "https://afrecommerce.netlify.app",
-      icon: Laptop,
-      category: "E-Commerce",
-    },
-    {
-      id: 3,
-      title: "IKONEX Systems",
-      description:
-        "Technology solutions company delivering enterprise software, networking, cybersecurity, and cloud solutions.",
-      website: "https://ikonex.co.ke",
-      icon: Code2,
-      category: "Enterprise",
-    },
-    {
-      id: 4,
-      title: "Personal Portfolio",
-      description:
-        "A modern developer portfolio showcasing professional experience, projects, technical skills, and achievements.",
-      website: "https://alexkipchirchirkemboi.netlify.app",
-      icon: Globe,
-      category: "Portfolio",
-    },
-  ];
+export default async function Portfolio() {
+  // Live title/description per site, refreshed on the ISR timer; static copy is the fallback
+  const live = await Promise.all(projects.map((p) => getLiveMeta(p.url)));
 
   return (
-    <section
-      id="portfolio"
-      className="py-24 px-4 md:px-8 lg:px-12"
-    >
-      <div className="max-w-7xl mx-auto">
+    <section id="portfolio" aria-labelledby="portfolio-title" className="bg-white py-20 md:py-28">
+      <div className="container-site">
+        <SectionHeading
+          id="portfolio-title"
+          number="05"
+          label="Selected work"
+          title={<>Things I&apos;ve built.</>}
+          intro="Enterprise lending systems for banks in three countries, plus live platforms I have built and deployed through IKONEX Systems."
+        />
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span
-            className="
-              inline-flex
-              rounded-full
-              border
-              border-cyan-500/30
-              bg-cyan-500/10
-              px-4
-              py-2
-              text-sm
-              text-cyan-400
-            "
+        {/* Flagship enterprise delivery */}
+        <Reveal>
+          <article className="on-dark grid gap-10 rounded-[18px] bg-navy p-7 text-white md:p-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-16 lg:p-14">
+            <div className="flex flex-col gap-5">
+              <p className="eyebrow text-white">Flagship · {flagship.category}</p>
+              <h3 className="display text-3xl md:text-[44px]">{flagship.title}</h3>
+              <p className="text-[17px] leading-relaxed text-mist">{flagship.description}</p>
+              <ul className="mt-2 flex flex-wrap gap-2" aria-label="Core banking integrations">
+                {flagship.integrations.map((name) => (
+                  <li
+                    key={name}
+                    className="rounded border border-amber/50 px-2.5 py-1 text-xs font-semibold tracking-[0.04em] text-amber"
+                  >
+                    {name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-xs font-bold uppercase tracking-[0.18em] text-steel">
+                Delivered for
+              </h4>
+              <ul className="mt-4 border-t border-white/15">
+                {flagship.clients.map((c) => (
+                  <li
+                    key={c.name}
+                    className="flex items-baseline justify-between gap-4 border-b border-white/15 py-4"
+                  >
+                    <span className="font-display text-lg font-extrabold uppercase tracking-[-0.01em] md:text-xl">
+                      {c.name}
+                    </span>
+                    <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.12em] text-steel">
+                      {c.country}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        </Reveal>
+
+        {/* IKONEX Systems: live client platforms */}
+        <Reveal className="mt-16 flex flex-col gap-4 border-t border-line pt-10 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="eyebrow text-navy">Built &amp; deployed under IKONEX Systems</p>
+            <h3 className="display mt-4 text-3xl md:text-4xl">Live client platforms.</h3>
+          </div>
+          <a
+            href="https://ikonexsystems.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 self-start border-b-2 border-amber pb-1 text-sm font-bold uppercase tracking-[0.08em] text-navy transition-colors hover:border-navy md:self-auto"
           >
-            Featured Work
-          </span>
+            ikonexsystems.com
+            <ArrowUpRight className="size-4" aria-hidden="true" />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+        </Reveal>
 
-          <h2 className="mt-6 text-5xl font-black text-white">
-            Recent
-            <span className="block bg-gradient-to-r from-cyan-400 to-sky-500 bg-clip-text text-transparent">
-              Projects
-            </span>
-          </h2>
-
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-zinc-400">
-            A selection of projects, products, and enterprise solutions
-            I&apos;ve designed and developed over the years.
-          </p>
-        </motion.div>
-
-        {/* Projects */}
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-          {projects.map((project, index) => {
-            const Icon = project.icon;
+        <ul className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {projects.map((project, i) => {
+            const meta = live[i];
+            const title = meta.title ?? project.title;
+            const description = meta.description ?? project.description;
 
             return (
-              <motion.div
-                key={project.id}
-                initial={{
-                  opacity: 0,
-                  y: 50,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.1,
-                }}
-                whileHover={{
-                  y: -10,
-                }}
-                className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-3xl
-                  border
-                  border-white/10
-                  bg-white/5
-                  backdrop-blur-xl
-                  p-8
-                  transition-all
-                  duration-300
-                  hover:border-cyan-500/30
-                  hover:shadow-2xl
-                  hover:shadow-cyan-500/10
-                "
-              >
-                {/* Glow */}
-                <div
-                  className="
-                    absolute
-                    top-0
-                    right-0
-                    h-32
-                    w-32
-                    rounded-full
-                    bg-cyan-500/10
-                    blur-3xl
-                  "
-                />
-
-                <div className="relative">
-
-                  <div
-                    className="
-                      mb-6
-                      flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
-                      rounded-2xl
-                      bg-cyan-500/10
-                      text-cyan-400
-                    "
-                  >
-                    <Icon size={30} />
-                  </div>
-
-                  <span
-                    className="
-                      inline-block
-                      rounded-full
-                      border
-                      border-white/10
-                      px-3
-                      py-1
-                      text-xs
-                      text-zinc-400
-                    "
-                  >
+            <Reveal as="li" key={project.url} delay={(i % 4) * 0.06}>
+              <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-line bg-white transition-[border-color,transform] duration-200 hover:border-navy/30 motion-safe:hover:-translate-y-1">
+                <div className="relative aspect-[16/10] overflow-hidden border-b border-line bg-cream">
+                  <LivePreview
+                    src={meta.online ? `/api/preview/${siteSlug(project.url)}` : undefined}
+                    fallback={project.image}
+                    alt={`Screenshot of ${title}`}
+                    sizes="(min-width: 1280px) 300px, (min-width: 768px) 50vw, 100vw"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col gap-3 p-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate-text">
                     {project.category}
-                  </span>
-
-                  <h3 className="mt-4 text-xl font-bold text-white">
-                    {project.title}
-                  </h3>
-
-                  <p className="mt-4 text-zinc-400 leading-relaxed">
-                    {project.description}
                   </p>
-
+                  <h4 className="font-display text-xl font-extrabold uppercase leading-tight tracking-[-0.01em] text-navy">
+                    {title}
+                  </h4>
+                  {project.client && project.client.toLowerCase() !== title.toLowerCase() && (
+                    <p className="text-sm font-semibold text-navy/80">Live for {project.client}</p>
+                  )}
+                  <p className="text-[15px] leading-relaxed text-slate-text">{description}</p>
+                  <ul className="flex flex-wrap gap-1.5" aria-label={`${title} features`}>
+                    {project.features.map((f) => (
+                      <li key={f} className="rounded bg-cream px-2 py-1 text-[11px] font-semibold text-navy/80">
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
                   <a
-                    href={project.website}
+                    href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="
-                      mt-6
-                      inline-flex
-                      items-center
-                      gap-2
-                      text-cyan-400
-                      hover:text-cyan-300
-                    "
+                    className="mt-auto inline-flex items-center gap-2 self-start border-b-2 border-amber pb-1 pt-4 text-sm font-bold uppercase tracking-[0.08em] text-navy transition-colors hover:border-navy"
                   >
-                    Visit Project
-                    <ExternalLink size={16} />
+                    Visit live site
+                    <ArrowUpRight className="size-4" aria-hidden="true" />
+                    <span className="sr-only">(opens in a new tab)</span>
                   </a>
-
                 </div>
-              </motion.div>
+              </article>
+            </Reveal>
             );
           })}
-        </div>
-
-        {/* Stats */}
-        <div
-          className="
-            mt-20
-            rounded-3xl
-            border
-            border-white/10
-            bg-white/5
-            backdrop-blur-xl
-            p-8
-          "
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-
-            <div>
-              <h3 className="text-4xl font-black text-cyan-400">
-                50+
-              </h3>
-              <p className="text-zinc-500 mt-2">
-                Projects Delivered
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-black text-cyan-400">
-                20+
-              </h3>
-              <p className="text-zinc-500 mt-2">
-                Technologies
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-black text-cyan-400">
-                5+
-              </h3>
-              <p className="text-zinc-500 mt-2">
-                Years Experience
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-black text-cyan-400">
-                100%
-              </h3>
-              <p className="text-zinc-500 mt-2">
-                Client Focus
-              </p>
-            </div>
-
-          </div>
-        </div>
-
+        </ul>
       </div>
     </section>
   );

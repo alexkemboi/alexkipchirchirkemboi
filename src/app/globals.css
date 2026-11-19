@@ -2,124 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  body {
+    @apply bg-white font-sans text-navy antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-amber text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-amber ring-offset-2 ring-offset-white;
+  }
+
+  .on-dark :focus-visible {
+    @apply ring-offset-navy;
   }
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-} */
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
+@layer components {
+  /* Eyebrow: short accent bar + spaced uppercase label */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-bold uppercase leading-snug tracking-[0.18em];
   }
 
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  overflow-x: hidden;
-}
-.animate-slideIn {
-  animation: slideIn 1.5s ease-out;
-
-}
-
-.animated {
-  animation: slideIn 1.5s ease-out;
-
-}
-.nav-link {
-  @apply px-4 py-2 rounded-xl text-zinc-400 transition-all duration-300;
-}
-
-.nav-link:hover {
-  @apply text-white bg-white/10;
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+  .eyebrow::before {
+    content: "";
+    @apply h-[3px] w-8 shrink-0 bg-amber;
   }
 
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 1.0s ease-out;
-}
-
-@keyframes rotateIn {
-  from {
-    transform: rotate(-180deg);
-    opacity: 0;
+  .display {
+    @apply font-display font-black uppercase leading-[0.98] tracking-[-0.03em];
   }
 
-  to {
-    transform: rotate(0);
-    opacity: 1;
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 md:px-8 lg:px-12;
+  }
+
+  .field {
+    @apply w-full rounded-md border border-white/15 bg-white/5 px-4 py-3 text-white placeholder:text-steel transition-colors focus:border-amber focus:outline-none focus:ring-0;
+  }
+
+  /* Long-form notes (/articles/[slug]) */
+  .note > p {
+    @apply mt-5 text-[17px] leading-[1.8] text-slate-text;
+  }
+
+  .note > p.lead {
+    @apply mt-0 font-display text-xl font-bold leading-snug text-navy md:text-2xl;
+  }
+
+  .note h2 {
+    @apply mb-1 mt-14 font-display text-2xl font-extrabold uppercase leading-tight tracking-[-0.01em] text-navy md:text-[28px];
+  }
+
+  .note h3 {
+    @apply mt-9 font-display text-lg font-extrabold uppercase text-navy;
+  }
+
+  .note ul {
+    @apply mt-5 list-disc space-y-2.5 pl-5 text-[17px] leading-[1.7] text-slate-text marker:text-amber;
+  }
+
+  .note strong {
+    @apply font-semibold text-navy;
+  }
+
+  .note blockquote {
+    @apply my-8 border-l-[3px] border-amber py-1 pl-5 font-display text-lg font-bold leading-snug text-navy md:text-xl;
+  }
+
+  .note :not(pre) > code {
+    @apply rounded bg-cream px-1.5 py-0.5 font-mono text-[0.88em] text-navy;
+  }
+
+  .note pre {
+    @apply mt-5 overflow-x-auto rounded-2xl bg-ink p-5 font-mono text-[13px] leading-relaxed text-white/90 md:p-6;
+  }
+
+  .field-label {
+    @apply mb-2 block text-xs font-semibold uppercase tracking-[0.12em] text-mist;
   }
 }
 
-.animate-rotateIn {
-  animation: rotateIn 0.5s ease-out;
-}
-
-@keyframes bounceIn {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  to {
-    transform: translateY(0);
-    opacity: 1;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-}
-
-.animate-bounceIn {
-  animation: bounceIn 0.5s ease-out;
-}
-
-/* styles.css (or your preferred stylesheet) */
-
-@keyframes scaleIn {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1.1);
-  }
-}
-
-.grow-on-hover {
-  transition: transform 0.3s ease-in-out;
-}
-
-.grow-on-hover:hover {
-  animation: scaleIn 0.3s ease-in-out;
-  transform: scale(1.1);
 }

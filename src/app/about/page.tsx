@@ -1,17 +1,21 @@
-import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import type { Metadata } from "next";
 import About from "@/components/About";
-import Home from "@/components/Home";
+import Experience from "@/components/Experience";
+import Education from "@/components/Education";
 
-const page = () => {
-	return (
-		<div className="flex flex-col justify-between min-h-screen bg-sky-950">
-			<main className="bg-sky-950">
-				<Home />
-				<About />
-			</main>
-		</div>
-	);
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "The story, experience and education of Alex Kemboi, a software engineer working on core banking and systems integration.",
+  alternates: { canonical: "/about" },
 };
-export default page;
+
+export default function Page() {
+  return (
+    <>
+      <About />
+      <Experience />
+      <Education />
+    </>
+  );
+}

@@ -1,249 +1,138 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
-
-import alex from "../images/alex.jpg";
+import avatar from "@/images/avatar.jpg";
+import { navItems, profile } from "@/lib/content";
+import ButtonLink from "./ui/Button";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Articles", href: "#articles" },
-    { name: "Contact", href: "#contact" },
-  ];
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen]);
 
   return (
-    <>
-      {/* Floating Centered Navbar */}
- <motion.nav
-  initial={{ y: -80, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.8 }}
-  className="fixed top-6 left-0 right-0 z-[9999] flex justify-center"
->
-        <div
-          className="
-            flex
-            items-center
-            gap-8
-            rounded-full
-            border
-            border-white/10
-            bg-slate-900/70
-            backdrop-blur-2xl
-            shadow-2xl
-            shadow-cyan-500/10
-            px-6
-            py-3
-          "
+    <header className="on-dark fixed inset-x-0 top-0 z-50 pt-3 text-white lg:pt-4">
+      <div className="container-site relative">
+      <nav
+        aria-label="Primary"
+        className={`flex h-16 items-center justify-between gap-4 rounded-2xl border border-white/10 bg-navy pl-3 pr-2 transition-shadow duration-200 lg:h-[72px] lg:pl-4 lg:pr-3 ${
+          scrolled ? "shadow-[0_14px_40px_rgb(10_26_48/0.35)]" : ""
+        }`}
+      >
+        <Link
+          href="/"
+          className="flex min-w-0 items-center gap-3"
+          onClick={() => setIsOpen(false)}
         >
-          {/* Logo */}
-          <Link
-            href="#home"
-            className="flex items-center gap-3"
-          >
-            <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-cyan-500/30">
-              <Image
-                src={alex}
-                alt="Alex Kemboi"
-                fill
-                className="object-cover"
-              />
-            </div>
+          <span className="relative size-10 shrink-0 overflow-hidden rounded-full ring-2 ring-amber ring-offset-2 ring-offset-navy lg:size-11">
+            <Image
+              src={avatar}
+              alt=""
+              fill
+              priority
+              sizes="44px"
+              className="object-cover"
+            />
+          </span>
+          <span className="flex min-w-0 flex-col leading-[1.15]">
+            <span className="truncate font-display text-[13px] font-extrabold uppercase tracking-[0.08em] sm:text-[15px]">
+              {profile.name}
+            </span>
+            <span className="truncate text-[10px] font-medium uppercase tracking-[0.14em] text-steel sm:text-[11px]">
+              {profile.title}
+            </span>
+          </span>
+        </Link>
 
-            <div className="hidden lg:block">
-              <h3 className="font-bold text-white text-sm">
-                Alex Kemboi
-              </h3>
-              <p className="text-xs text-zinc-400">
-                Full Stack Developer
-              </p>
-            </div>
-          </Link>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
+        <ul className="hidden items-center gap-8 xl:flex">
+          {navItems.map((item) => (
+            <li key={item.name}>
               <Link
-                key={item.name}
                 href={item.href}
-                className="
-                  px-4
-                  py-2
-                  rounded-full
-                  text-sm
-                  font-medium
-                  text-zinc-400
-                  hover:text-white
-                  hover:bg-white/10
-                  transition-all
-                  duration-300
-                "
+                className="relative py-2 text-[13px] font-semibold uppercase tracking-[0.1em] text-white/90 transition-colors after:absolute after:bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:bg-amber after:transition-[width] after:duration-200 hover:text-white hover:after:w-full"
               >
                 {item.name}
               </Link>
-            ))}
-          </div>
+            </li>
+          ))}
+        </ul>
 
-          {/* CTA */}
-          <div className="hidden md:block">
-            <Link
-              href="#contact"
-              className="
-                rounded-full
-                bg-gradient-to-r
-                from-cyan-500
-                to-sky-600
-                px-5
-                py-2.5
-                text-sm
-                font-semibold
-                text-white
-                transition-all
-                duration-300
-                hover:scale-105
-                hover:shadow-lg
-                hover:shadow-cyan-500/30
-              "
-            >
-              Hire Me
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(true)}
-            className="md:hidden text-white"
+        <div className="flex shrink-0 items-center gap-2">
+          <ButtonLink
+            href="/#contact"
+            className="hidden min-h-11 rounded-xl px-5 text-[13px] sm:inline-flex"
           >
-            <FontAwesomeIcon
-              icon={faBars}
-              className="h-5 w-5"
-            />
+            Work with me
+          </ButtonLink>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen((v) => !v)}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            className="inline-flex size-11 items-center justify-center rounded-xl text-white hover:bg-white/10 xl:hidden"
+          >
+            {isOpen ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
-            />
-
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{
-                type: "spring",
-                damping: 20,
-              }}
-              className="
-                fixed
-                top-0
-                left-0
-                z-[9999]
-                h-screen
-                w-72
-                bg-slate-950/95
-                backdrop-blur-xl
-                border-r
-                border-white/10
-                p-6
-              "
-            >
-              <div className="flex items-center justify-between mb-10">
-                <div className="flex items-center gap-3">
-                  <div className="relative h-10 w-10 overflow-hidden rounded-full">
-                    <Image
-                      src={alex}
-                      alt="Alex Kemboi"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      Alex Kemboi
-                    </h3>
-                    <p className="text-xs text-zinc-400">
-                      Software Engineer
-                    </p>
-                  </div>
-                </div>
-
-                <button onClick={() => setIsOpen(false)}>
-                  <FontAwesomeIcon
-                    icon={faTimes}
-                    className="h-5 w-5 text-white"
-                  />
-                </button>
-              </div>
-
-              <div className="space-y-2">
-                {navItems.map((item) => (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-x-5 top-full mt-2 rounded-2xl border border-white/10 bg-navy px-5 pb-5 pt-2 shadow-[0_24px_48px_rgb(10_26_48/0.4)] md:inset-x-8 lg:inset-x-12 xl:hidden"
+          >
+            <ul className="flex flex-col">
+              {navItems.map((item) => (
+                <li key={item.name}>
                   <Link
-                    key={item.name}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="
-                      block
-                      rounded-xl
-                      px-4
-                      py-3
-                      text-zinc-300
-                      hover:bg-white/10
-                      hover:text-cyan-400
-                      transition-all
-                    "
+                    className="flex min-h-12 items-center border-b border-white/10 text-sm font-semibold uppercase tracking-[0.1em] text-white hover:text-amber"
                   >
                     {item.name}
                   </Link>
-                ))}
-              </div>
-
-              <Link
-                href="#contact"
-                className="
-                  mt-8
-                  block
-                  text-center
-                  rounded-xl
-                  bg-gradient-to-r
-                  from-cyan-500
-                  to-sky-600
-                  px-5
-                  py-3
-                  text-white
-                  font-semibold
-                "
-              >
-                Hire Me
-              </Link>
-            </motion.div>
-          </>
+                </li>
+              ))}
+              <li>
+                <ButtonLink
+                  href="/#contact"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-5 w-full rounded-xl"
+                >
+                  Work with me
+                </ButtonLink>
+              </li>
+            </ul>
+          </motion.div>
         )}
       </AnimatePresence>
-    </>
+      </div>
+    </header>
   );
 };
 

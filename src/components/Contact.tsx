@@ -1,411 +1,185 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin, Loader2 } from "lucide-react";
+import { ArrowUpRight, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+import { profile } from "@/lib/content";
+import { buttonClass } from "./ui/Button";
+import Reveal from "./ui/Reveal";
+
+const emptyForm = {
+  projectName: "",
+  contactPerson: "",
+  email: "",
+  description: "",
+  budget: "",
+  deadline: "",
+  goals: "",
+};
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
-
-  const [formData, setFormData] = useState({
-    projectName: "",
-    contactPerson: "",
-    email: "",
-    description: "",
-    budget: "",
-    deadline: "",
-    goals: "",
-  });
+  const [formData, setFormData] = useState(emptyForm);
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (
-    e: React.FormEvent
-  ) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     setLoading(true);
 
     try {
-      const response = await fetch(
-        "/api/sendemail",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("/api/sendemail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       if (response.ok) {
-        toast.success(
-          "Project requirements submitted successfully."
-        );
-
-        setFormData({
-          projectName: "",
-          contactPerson: "",
-          email: "",
-          description: "",
-          budget: "",
-          deadline: "",
-          goals: "",
-        });
+        toast.success("Thanks. Your project details are on their way to me.");
+        setFormData(emptyForm);
       } else {
-        toast.error(
-          "Unable to submit your request."
-        );
+        toast.error("Unable to submit your request.");
       }
     } catch (error) {
-      toast.error(
-        "Something went wrong. Please try again."
-      );
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
+  const channels = [
+    { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
+    { icon: Phone, label: "Phone", value: profile.phone, href: profile.phoneHref },
+    { icon: MapPin, label: "Based in", value: profile.location },
+  ];
+
   return (
     <section
       id="contact"
-      className="py-24 px-4 md:px-8 lg:px-12"
+      aria-labelledby="contact-title"
+      className="on-dark relative overflow-hidden bg-navy py-20 text-white md:py-28"
     >
-      <div className="max-w-7xl mx-auto">
-
-        {/* Header */}
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 40,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span
-            className="
-              inline-flex
-              rounded-full
-              border
-              border-cyan-500/30
-              bg-cyan-500/10
-              px-4
-              py-2
-              text-sm
-              text-cyan-400
-            "
-          >
-            Let&apos;s Work Together
-          </span>
-
-          <h2 className="mt-6 text-5xl font-black text-white">
-            Start Your
-            <span className="block bg-gradient-to-r from-cyan-400 to-sky-500 bg-clip-text text-transparent">
-              Next Project
-            </span>
-          </h2>
-
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-zinc-400">
-            Tell me about your project and I&apos;ll
-            help turn your idea into a scalable,
-            modern solution.
+      <div className="container-site grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+        <Reveal className="flex flex-col">
+          <p className="eyebrow text-white">
+            <span className="text-amber">08</span>
+            <span>Contact</span>
           </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-3 gap-10">
-
-          {/* Contact Information */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: -40,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{ once: true }}
-            className="
-              rounded-3xl
-              border
-              border-white/10
-              bg-white/5
-              backdrop-blur-xl
-              p-8
-            "
+          <h2
+            id="contact-title"
+            className="display mt-5 text-[clamp(2.3rem,1.2rem+3.8vw,4rem)]"
           >
-            <h3 className="text-2xl font-bold text-white">
-              Contact Information
+            Have a system to build <span className="text-amber">or integrate?</span>
+          </h2>
+          <p className="mt-6 max-w-md text-[17px] leading-[1.65] text-mist">
+            I take on full stack builds, banking and enterprise integrations,
+            and consulting. Tell me what you need and I&apos;ll reply within a
+            couple of working days.
+          </p>
+
+          <ul className="mt-10 space-y-5 border-t border-white/10 pt-8">
+            {channels.map(({ icon: Icon, label, value, href }) => (
+              <li key={label} className="flex items-start gap-4">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-md border border-white/15 text-amber">
+                  <Icon className="size-[18px]" aria-hidden="true" />
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-xs font-semibold uppercase tracking-[0.12em] text-steel">
+                    {label}
+                  </span>
+                  {href ? (
+                    <a href={href} className="break-all text-[17px] font-semibold hover:text-amber">
+                      {value}
+                    </a>
+                  ) : (
+                    <span className="text-[17px] font-semibold">{value}</span>
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={profile.cv}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-10 inline-flex items-center gap-2 self-start border-b-2 border-amber pb-1 text-sm font-bold uppercase tracking-[0.08em] text-white transition-colors hover:border-white"
+          >
+            Download my CV
+            <ArrowUpRight className="size-4" aria-hidden="true" />
+            <span className="sr-only">(PDF, opens in a new tab)</span>
+          </a>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-[18px] border border-white/10 bg-ink/40 p-6 md:p-10"
+          >
+            <h3 className="font-display text-lg font-extrabold uppercase tracking-[0.02em]">
+              Start a project
             </h3>
+            <p className="mt-1 text-sm text-steel">Fields marked * are required.</p>
 
-            <p className="mt-4 text-zinc-400">
-              Available for freelance,
-              consulting, enterprise solutions,
-              and long-term collaborations.
-            </p>
-
-            <div className="space-y-6 mt-10">
-
-              <div className="flex gap-4">
-                <Mail className="text-cyan-400" />
-                <div>
-                  <h4 className="text-white font-semibold">
-                    Email
-                  </h4>
-                  <p className="text-zinc-400">
-                    alex@example.com
-                  </p>
-                </div>
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <div>
+                <label htmlFor="projectName" className="field-label">Project name *</label>
+                <input id="projectName" type="text" name="projectName" value={formData.projectName} onChange={handleChange} required className="field" />
               </div>
-
-              <div className="flex gap-4">
-                <Phone className="text-cyan-400" />
-                <div>
-                  <h4 className="text-white font-semibold">
-                    Phone
-                  </h4>
-                  <p className="text-zinc-400">
-                    +254 xxx xxx xxx
-                  </p>
-                </div>
+              <div>
+                <label htmlFor="contactPerson" className="field-label">Your name *</label>
+                <input id="contactPerson" type="text" name="contactPerson" autoComplete="name" value={formData.contactPerson} onChange={handleChange} required className="field" />
               </div>
-
-              <div className="flex gap-4">
-                <MapPin className="text-cyan-400" />
-                <div>
-                  <h4 className="text-white font-semibold">
-                    Location
-                  </h4>
-                  <p className="text-zinc-400">
-                    Nairobi, Kenya
-                  </p>
-                </div>
+              <div className="md:col-span-2">
+                <label htmlFor="email" className="field-label">Email *</label>
+                <input id="email" type="email" name="email" autoComplete="email" value={formData.email} onChange={handleChange} required className="field" />
               </div>
-
+              <div className="md:col-span-2">
+                <label htmlFor="description" className="field-label">Project description *</label>
+                <textarea id="description" rows={4} name="description" value={formData.description} onChange={handleChange} required className="field resize-y" />
+              </div>
+              <div>
+                <label htmlFor="budget" className="field-label">Budget (USD)</label>
+                <input id="budget" type="text" inputMode="decimal" name="budget" value={formData.budget} onChange={handleChange} className="field" />
+              </div>
+              <div>
+                <label htmlFor="deadline" className="field-label">Deadline</label>
+                <input id="deadline" type="date" name="deadline" value={formData.deadline} onChange={handleChange} className="field [color-scheme:dark]" />
+              </div>
+              <div className="md:col-span-2">
+                <label htmlFor="goals" className="field-label">Goals</label>
+                <textarea id="goals" rows={3} name="goals" value={formData.goals} onChange={handleChange} className="field resize-y" />
+              </div>
             </div>
-          </motion.div>
 
-          {/* Form */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              x: 40,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{ once: true }}
-            className="
-              lg:col-span-2
-              rounded-3xl
-              border
-              border-white/10
-              bg-white/5
-              backdrop-blur-xl
-              p-8
-            "
-          >
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-6"
+            <button
+              type="submit"
+              disabled={loading}
+              className={buttonClass("primary", "mt-8 w-full sm:w-auto")}
             >
-              <div className="grid md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  name="projectName"
-                  placeholder="Project Name"
-                  value={formData.projectName}
-                  onChange={handleChange}
-                  required
-                  className="
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-white/5
-                    px-4
-                    py-3
-                    text-white
-                    outline-none
-                    focus:border-cyan-500
-                  "
-                />
-
-                <input
-                  type="text"
-                  name="contactPerson"
-                  placeholder="Contact Person"
-                  value={formData.contactPerson}
-                  onChange={handleChange}
-                  required
-                  className="
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-white/5
-                    px-4
-                    py-3
-                    text-white
-                    outline-none
-                    focus:border-cyan-500
-                  "
-                />
-              </div>
-
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="
-                  w-full
-                  rounded-xl
-                  border
-                  border-white/10
-                  bg-white/5
-                  px-4
-                  py-3
-                  text-white
-                  outline-none
-                  focus:border-cyan-500
-                "
-              />
-
-              <textarea
-                rows={5}
-                name="description"
-                placeholder="Project Description"
-                value={formData.description}
-                onChange={handleChange}
-                required
-                className="
-                  w-full
-                  rounded-xl
-                  border
-                  border-white/10
-                  bg-white/5
-                  px-4
-                  py-3
-                  text-white
-                  outline-none
-                  focus:border-cyan-500
-                "
-              />
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  name="budget"
-                  placeholder="Budget"
-                  value={formData.budget}
-                  onChange={handleChange}
-                  className="
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-white/5
-                    px-4
-                    py-3
-                    text-white
-                  "
-                />
-
-                <input
-                  type="date"
-                  name="deadline"
-                  value={formData.deadline}
-                  onChange={handleChange}
-                  className="
-                    rounded-xl
-                    border
-                    border-white/10
-                    bg-white/5
-                    px-4
-                    py-3
-                    text-white
-                  "
-                />
-              </div>
-
-              <textarea
-                rows={4}
-                name="goals"
-                placeholder="Project Goals"
-                value={formData.goals}
-                onChange={handleChange}
-                className="
-                  w-full
-                  rounded-xl
-                  border
-                  border-white/10
-                  bg-white/5
-                  px-4
-                  py-3
-                  text-white
-                "
-              />
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="
-                  flex
-                  items-center
-                  justify-center
-                  gap-2
-                  rounded-xl
-                  bg-gradient-to-r
-                  from-cyan-500
-                  to-sky-600
-                  px-8
-                  py-4
-                  font-semibold
-                  text-white
-                  transition-all
-                  hover:scale-105
-                  disabled:opacity-50
-                "
-              >
-                {loading ? (
-                  <>
-                    <Loader2
-                      size={18}
-                      className="animate-spin"
-                    />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Submit Project
-                    <Send size={18} />
-                  </>
-                )}
-              </button>
-            </form>
-          </motion.div>
-
-        </div>
-
-        <ToastContainer />
+              {loading ? (
+                <>
+                  <Loader2 className="size-[18px] animate-spin" aria-hidden="true" />
+                  Sending…
+                </>
+              ) : (
+                <>
+                  Send project details
+                  <Send className="size-[18px]" aria-hidden="true" />
+                </>
+              )}
+            </button>
+          </form>
+        </Reveal>
       </div>
+
+      <ToastContainer position="bottom-right" theme="dark" />
     </section>
   );
 }

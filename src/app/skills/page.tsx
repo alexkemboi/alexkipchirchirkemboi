@@ -1,15 +1,13 @@
-import React from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import type { Metadata } from "next";
 import Skills from "@/components/Skills";
 
-const page = () => {
-	return (
-		<div className="flex flex-col min-h-screen bg-sky-950">
-			<main className="flex-1 bg-sky-950">
-				<Skills />
-			</main>
-		</div>
-	);
+export const metadata: Metadata = {
+  title: "Skills & Expertise",
+  description:
+    "Frontend development, backend engineering, data analysis and visualisation, systems integration, cloud and DevOps, and AI product development.",
+  alternates: { canonical: "/skills" },
 };
-export default page;
+
+export default function Page() {
+  return <Skills />;
+}

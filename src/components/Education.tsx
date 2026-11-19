@@ -32,6 +32,16 @@ export default function Education() {
               </h3>
               <p className="mt-1.5 text-sm font-semibold text-navy/80">{item.institution}</p>
               <p className="mt-4 text-[15px] leading-relaxed text-slate-text">{item.detail}</p>
+              {"research" in item && item.research && (
+                <div className="mt-5 rounded-xl border-l-[3px] border-amber bg-cream px-4 py-3">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-text">
+                    Research
+                  </p>
+                  <p className="mt-1.5 text-[15px] font-semibold leading-snug text-navy">
+                    {item.research}
+                  </p>
+                </div>
+              )}
               {item.href && (
                 <a
                   href={item.href}

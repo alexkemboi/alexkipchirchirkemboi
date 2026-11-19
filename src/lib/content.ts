@@ -206,8 +206,8 @@ export const capabilities: Capability[] = [
   {
     title: "AI Product Development",
     summary:
-      "Building AI-powered features into business products, backed by AI-assisted engineering and MSc research at JKUAT.",
-    tools: ["AI features", "AI-assisted dev", "Software Engineering", "MSc research"],
+      "Building AI-powered features into business products. My MSc research at JKUAT develops an explainable, semantically aware AI framework for refactoring large-scale codebases.",
+    tools: ["AI features", "AI-assisted dev", "Explainable AI", "Code refactoring", "MSc research"],
   },
 ];
 
@@ -392,6 +392,8 @@ export const education = [
     title: "MSc Software Engineering",
     institution: "Jomo Kenyatta University of Agriculture and Technology",
     detail: "Postgraduate study in software engineering, in progress.",
+    research:
+      "An Explainable and Semantically Aware AI Framework for Code Refactoring in Large-Scale Software Systems",
   },
   {
     period: "2014 — 2018",

@@ -17,6 +17,8 @@ RUN addgroup -S nodejs && adduser -S nextjs -G nodejs
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# sharp loads its platform binary dynamically, so standalone tracing misses it
+COPY --from=builder --chown=nextjs:nodejs /app/node_modules/@img ./node_modules/@img
 USER nextjs
 EXPOSE 3000
 CMD ["node", "server.js"]
